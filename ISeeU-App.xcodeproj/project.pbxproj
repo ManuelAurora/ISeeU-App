@@ -12,6 +12,8 @@
 		644ED4331C9E624E00EF9297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644ED4311C9E624E00EF9297 /* Main.storyboard */; };
 		644ED4351C9E624E00EF9297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644ED4341C9E624E00EF9297 /* Assets.xcassets */; };
 		644ED4381C9E624E00EF9297 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644ED4361C9E624E00EF9297 /* LaunchScreen.storyboard */; };
+		644ED4401C9E790100EF9297 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ED43F1C9E790100EF9297 /* RequestHandler.swift */; };
+		644ED4421C9E861900EF9297 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ED4411C9E861900EF9297 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		644ED4341C9E624E00EF9297 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644ED4371C9E624E00EF9297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		644ED4391C9E624E00EF9297 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		644ED43F1C9E790100EF9297 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		644ED4411C9E861900EF9297 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				644ED42D1C9E624E00EF9297 /* AppDelegate.swift */,
 				644ED42F1C9E624E00EF9297 /* ViewController.swift */,
+				644ED43F1C9E790100EF9297 /* RequestHandler.swift */,
+				644ED4411C9E861900EF9297 /* Constants.swift */,
 				644ED4311C9E624E00EF9297 /* Main.storyboard */,
 				644ED4341C9E624E00EF9297 /* Assets.xcassets */,
 				644ED4361C9E624E00EF9297 /* LaunchScreen.storyboard */,
@@ -137,6 +143,8 @@
 			files = (
 				644ED4301C9E624E00EF9297 /* ViewController.swift in Sources */,
 				644ED42E1C9E624E00EF9297 /* AppDelegate.swift in Sources */,
+				644ED4401C9E790100EF9297 /* RequestHandler.swift in Sources */,
+				644ED4421C9E861900EF9297 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
