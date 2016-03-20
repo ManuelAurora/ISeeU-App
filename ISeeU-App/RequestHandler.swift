@@ -18,7 +18,7 @@ class Request: NSObject
         
     }
     
-    func handlePostTask(url: String, jsonBody: String, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
+    func handlePostTask(url: String, udacity: Bool = false, jsonBody: String, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
                 
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
@@ -39,36 +39,56 @@ class Request: NSObject
             guard error    == nil else { sendError("There was an error with request \(error)"); return }
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else { sendError("Invalid status code"); return }
             
-            self.convertDataWithCompletionHandler(data!, completionHandler: completionHandler)            
+            self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
         }
         task.resume()
     }
-//    
-//    func urlFromParameters(parameters: [String: AnyObject], withExtenstion: String?) -> NSURL {
-//        
-//        let components = NSURLComponents()
-//        
-//        components.path   = Constants.parseAPIPath + (withExtenstion ?? "")
-//        components.scheme = Constants.apiScheme
-//        components.host   = Constants.parseAPIHost
-//        
-//        for (key, value) in parameters {
-//            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
-//            
-//            components.queryItems?.append(queryItem)
-//        }
-//        print(components.URL!)
-//        return components.URL!
-//      
-//    }
     
-    private func convertDataWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    func handleGetTask(url: String, udacity: Bool = false, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
+        
+        //let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        //request.HTTPMethod = "GET"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        let task =  session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        
+        self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
+        
+        }
+        task.resume()
+        
+    }
+    
+    
+    func urlFromParameters(parameters: [String: AnyObject], withExtenstion: String?) -> NSURL {
+        
+        let components = NSURLComponents()
+        
+        components.path   = Constants.parseAPIPath + (withExtenstion ?? "")
+        components.scheme = Constants.apiScheme
+        components.host   = Constants.parseAPIHost
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            
+            components.queryItems?.append(queryItem)
+        }
+        print(components.URL!)
+        return components.URL!
+      
+    }
+
+    private func convertDataWithCompletionHandler(data: NSData, udacity: Bool, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+        var newData:    NSData! // Used if we parcing Udacity
         var parsedJson: AnyObject!
         
-        do {
-          // TODO: MAKE -5 BUKV
-            parsedJson = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-        } catch {
+        do {          
+            if udacity { newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) } // SKIP THE FIRST 5 CHARACTERS OF THE RESPONSE.            
+            parsedJson = try NSJSONSerialization.JSONObjectWithData(udacity ? newData : data , options: .AllowFragments)
+        }
+        catch {
             let userInfo = [NSLocalizedDescriptionKey: "Unable to parse data \(data)"]
             completionHandler(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
         }

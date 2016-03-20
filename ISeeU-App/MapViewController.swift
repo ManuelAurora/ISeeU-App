@@ -9,20 +9,20 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate
+class MapViewController: UIViewController, MKMapViewDelegate
 {
-
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let json = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
         let url = "https://www.udacity.com/api/session"
-        Request.sharedInstance().handlePostTask(url, jsonBody: json) {
-            (task, error) -> Void in
-            print(task)
-        }
         
+        
+        Request.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
+            
+               (UIApplication.sharedApplication().delegate as! AppDelegate).students = task["results"] as! [[String: AnyObject]]
+        }
     }
     
     override func didReceiveMemoryWarning() {
