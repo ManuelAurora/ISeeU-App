@@ -43,9 +43,9 @@ class StudentsTableViewController: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell", forIndexPath: indexPath) as! StudentTableViewCell
         let student = appDelegate.students[indexPath.row]
-        cell.studentNameLabel.text = student["firstName"] as String
-
-        // Configure the cell...
+        let name = student["firstName"] as! String
+        let lastName = student["lastName"] as! String
+        cell.studentNameLabel.text = "\(name) \(lastName)"
 
         return cell
     }
