@@ -12,7 +12,6 @@ import MapKit
 class AddNewPinViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var titleLAbel: UILabel!
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var locationTextField: UITextField!
     
@@ -30,23 +29,19 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate {
            
             let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PlacePinViewController") as! PlacePinViewController
             
-            controller.coordinateRegion = coordinateRegion
-            
-            self.presentViewController(controller, animated: false, completion: nil)
-            
-        }        
+            controller.coordinateRegion = coordinateRegion            
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
     }
     
         override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         let placeHolderText = NSAttributedString(string: "Enter your location here", attributes: [NSForegroundColorAttributeName: locationTextField.tintColor])
         findButton.layer.cornerRadius = 10
         findButton.clipsToBounds = true
         
         locationTextField.attributedPlaceholder = placeHolderText
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +52,5 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    
+    }        
 }

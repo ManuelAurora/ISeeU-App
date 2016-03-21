@@ -42,10 +42,13 @@ class StudentsTableViewController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell", forIndexPath: indexPath) as! StudentTableViewCell
-        let student = appDelegate.students[indexPath.row]
-        let name = student["firstName"] as! String
-        let lastName = student["lastName"] as! String
-        cell.studentNameLabel.text = "\(name) \(lastName)"
+        
+        let student = Student(fromDictionary: appDelegate.students[indexPath.row])
+        
+        let firstName = student.firstName!
+        let lastName = student.lastName!
+        
+        cell.studentNameLabel.text = "\(firstName) \(lastName)"
 
         return cell
     }

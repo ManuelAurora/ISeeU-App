@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Request: NSObject
+class RequestHandler: NSObject
 {
     let session = NSURLSession.sharedSession()
     
@@ -24,8 +24,11 @@ class Request: NSObject
         
         request.HTTPMethod = "POST"
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+      //  request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
           
@@ -96,9 +99,9 @@ class Request: NSObject
         completionHandler(result: parsedJson, error: nil)
     }
     
-    class func sharedInstance() -> Request {
+    class func sharedInstance() -> RequestHandler {
         struct Singleton {
-            static let sharedInstance = Request()
+            static let sharedInstance = RequestHandler()
         }
         return Singleton.sharedInstance
     }

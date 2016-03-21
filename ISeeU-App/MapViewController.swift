@@ -17,7 +17,10 @@ class MapViewController: UIViewController, MKMapViewDelegate
     
     @IBAction func addNewPin(sender: UIBarButtonItem) {
         
-     //  mapView.setRegion(<#T##region: MKCoordinateRegion##MKCoordinateRegion#>, animated: <#T##Bool#>)
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("AddNewPinViewController") as! AddNewPinViewController
+     
+        presentViewController(controller, animated: true, completion: nil)
+        
         
     }
     override func viewDidLoad() {
@@ -25,24 +28,26 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         let json = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
         let url = "https://www.udacity.com/api/session"
-        
-        
-        Request.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
+                
+        RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
             
             (UIApplication.sharedApplication().delegate as! AppDelegate).students = task["results"] as! [[String: AnyObject]]
             
-            let students = self.appDelegate.students
+            let studentsArray = self.appDelegate.students
             var annotations = [MKPointAnnotation]()
             
-            for student in students {
-                let lat = CLLocationDegrees(student["latitude"] as! Double)
-                let long = CLLocationDegrees(student["longitude"] as! Double)
+            for person in studentsArray {
+                
+                let student = Student(fromDictionary: person)
+                
+                let lat = CLLocationDegrees(student.latitude!)
+                let long = CLLocationDegrees(student.longitude!)
                 
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 
-                let firstName = student["firstName"] as! String
-                let lastName  = student["lastName"] as! String
-                let mediaURL  = student["mediaURL"] as! String
+                let firstName = student.firstName!
+                let lastName  = student.lastName!
+                let mediaURL  = student.mediaURL!
                 
                 let annotation = MKPointAnnotation()
                 annotation.title = "\(firstName) \(lastName)"
@@ -51,7 +56,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
                 
                 annotations.append(annotation)
             }
-            
             
             self.mapView.addAnnotations(annotations)
         }
