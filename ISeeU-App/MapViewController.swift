@@ -21,14 +21,10 @@ class MapViewController: UIViewController, MKMapViewDelegate
      
         presentViewController(controller, animated: true, completion: nil)
         
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let json = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
-        let url = "https://www.udacity.com/api/session"
-                
+     
         RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
             
             (UIApplication.sharedApplication().delegate as! AppDelegate).students = task["results"] as! [[String: AnyObject]]
@@ -91,6 +87,13 @@ class MapViewController: UIViewController, MKMapViewDelegate
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if !(UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        appDelegate.window?.rootViewController?.presentViewController(loginController, animated: false, completion: nil)
+        }
+    }
     
 }
 

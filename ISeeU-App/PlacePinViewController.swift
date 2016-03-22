@@ -19,11 +19,13 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
     
     @IBAction func submitLocation() {
         
-        let jsonBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}"
+        let currentStudent = (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser
         
-        RequestHandler.sharedInstance().handlePostTask("https://api.parse.com/1/classes/StudentLocation", jsonBody: jsonBody) {
+        let jsonBody = "{\"uniqueKey\": \"\(currentStudent.udacityKey)\", \"firstName\": \"\(currentStudent.firstName)\", \"lastName\": \"\(currentStudent.lastName)\",\"mapString\": \"\(currentStudent.location)\", \"mediaURL\": \"\(currentStudent.mediaURL)\",\"latitude\": \(currentStudent.latitude), \"longitude\": \(currentStudent.longitude)}"
+        
+        RequestHandler.sharedInstance().handlePostTask(ParseApi.parseApiPath, jsonBody: jsonBody) {
             (task, error) -> Void in
-            //
+           print(task)
         }
         
         dismissViewControllerAnimated(false) { () -> Void in

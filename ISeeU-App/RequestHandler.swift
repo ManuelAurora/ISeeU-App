@@ -49,11 +49,11 @@ class RequestHandler: NSObject
     
     func handleGetTask(url: String, udacity: Bool = false, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
         
-        //let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        //request.HTTPMethod = "GET"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.HTTPMethod = "GET"
+        //  var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        //  request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        //request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         let task =  session.dataTaskWithRequest(request) { (data, response, error) -> Void in
         
@@ -69,9 +69,9 @@ class RequestHandler: NSObject
         
         let components = NSURLComponents()
         
-        components.path   = Constants.parseAPIPath + (withExtenstion ?? "")
-        components.scheme = Constants.apiScheme
-        components.host   = Constants.parseAPIHost
+       // components.path   = Constants.parseAPIPath + (withExtenstion ?? "")
+        //components.scheme = Constants.apiScheme
+      //  components.host   = Constants.parseAPIHost
         
         for (key, value) in parameters {
             let queryItem = NSURLQueryItem(name: key, value: "\(value)")

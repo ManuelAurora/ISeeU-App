@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="G2J-na-bvf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GQM-Tj-keW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -54,7 +54,7 @@
         <scene sceneID="RU5-ep-fjL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QhB-7D-4mv" userLabel="Map navigaion controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" id="E68-wj-2uV"/>
+                    <tabBarItem key="tabBarItem" image="map" id="E68-wj-2uV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Vd-5N-0cZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -73,8 +73,9 @@
         <!--Tab Bar Controller-->
         <scene sceneID="rpe-O6-Kxw">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GQM-Tj-keW" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBar" automaticallyAdjustsScrollViewInsets="NO" id="GQM-Tj-keW" customClass="TabBarController" customModule="ISeeU_App" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1yT-gL-84W"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vsm-7I-sM2">
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -160,7 +161,7 @@
         <scene sceneID="Pzs-nu-I2x">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cll-MS-wM9" userLabel="Table of pins navigation controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="30c-eH-YFo"/>
+                    <tabBarItem key="tabBarItem" title="" image="list" id="30c-eH-YFo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVX-Z4-9rF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -179,7 +180,7 @@
         <!--Login View Controller-->
         <scene sceneID="pOt-vn-dgK">
             <objects>
-                <viewController id="G2J-na-bvf" customClass="LoginViewController" customModule="ISeeU_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="G2J-na-bvf" customClass="LoginViewController" customModule="ISeeU_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qe7-3M-NlJ"/>
                         <viewControllerLayoutGuide type="bottom" id="CLt-OQ-Ntq"/>
@@ -288,7 +289,7 @@
                                     <view contentMode="scaleToFill" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="u4J-NP-7Br" userLabel="ColoredRect">
                                         <rect key="frame" x="0.0" y="149" width="320" height="237"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here" textAlignment="center" minimumFontSize="21" translatesAutoresizingMaskIntoConstraints="NO" id="6zF-4f-0fs">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Enter your location here" textAlignment="center" minimumFontSize="21" translatesAutoresizingMaskIntoConstraints="NO" id="6zF-4f-0fs">
                                                 <rect key="frame" x="51" y="35" width="218" height="71"/>
                                                 <animations/>
                                                 <color key="tintColor" red="0.82624772589999995" green="0.85364583329999999" blue="0.84066351179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -442,6 +443,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="list" width="32" height="32"/>
+        <image name="map" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
     </resources>
 </document>

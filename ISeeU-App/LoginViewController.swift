@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
+    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -17,11 +18,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBAction func login() {      
         
         let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
+        let currentUser = (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser
+       
         
-        RequestHandler.sharedInstance().handlePostTask(Udacity.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
-            print(task)
+        RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
+            guard let data = task as? [String: AnyObject] else { print("failed"); return }
+            guard error == nil else { print(error); return }
+            
+            let sessionInfo = data["session"] as? [String: AnyObject]
+            let accountInfo = data["account"] as? [String: AnyObject]
+            
+            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.udacityKey = accountInfo!["key"] as? String
+            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.studentId = sessionInfo!["id"] as? String
+            (UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn = true
+            
+            RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(currentUser.udacityKey)", udacity: true, completionHandler: {
+                (task, error) -> Void in
+                print(task)
+                let a = 2
+            })
+            
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
-    }    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +71,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
 }

@@ -10,19 +10,30 @@ import Foundation
 
 struct Student {
     
-    let latitude: Double?
-    let longitude: Double?
-    let studentId: String?
-    let firstName: String?
-    let lastName: String?
-    let mediaURL: String?
-    let udacityKey: String?
-    let location: String?
+    var latitude: Float!
+    var longitude: Float!
+    var studentId: String!
+    var firstName: String!
+    var lastName: String!
+    var mediaURL: String!
+    var udacityKey: String!
+    var location: String!
+    
+    init() {
+        latitude = nil
+        longitude = nil
+        studentId = nil
+        firstName = nil
+        lastName = nil
+        mediaURL = nil
+        udacityKey = nil
+        location = nil
+    }
     
     init(fromDictionary dict: [String: AnyObject]) {
         
-        latitude   = dict["latitude"]  as? Double
-        longitude  = dict["longitude"] as? Double
+        latitude   = dict["latitude"]  as? Float
+        longitude  = dict["longitude"] as? Float
         studentId  = dict["objectId"]  as? String
         firstName  = dict["firstName"] as? String
         lastName   = dict["lastName"]  as? String
