@@ -14,14 +14,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "mapView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "MapViewController.viewDidLoad() -&gt; ():MapViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -38,16 +30,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mapView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Request.(convertDataWithCompletionHandler in _CB25DC3BEE9121E779497650E9918A81)(NSData, udacity : Bool, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
       </ContextState>
       <ContextState
          contextName = "StudentsTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RequestHandler.(handlePostTask(RequestHandler) -&gt; (String, udacity : Bool, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "jsonBody">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -63,10 +71,10 @@
          contextName = "MapViewController.(viewDidLoad(MapViewController) -&gt; () -&gt; ()).(closure #1):MapViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
             </PersistentString>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -8,38 +8,50 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-
+class LoginViewController: UIViewController, UITextFieldDelegate
+{
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
-    
-    @IBAction func login() {
+    @IBAction func login() {      
         
-    }
-    
+        let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
+        
+        RequestHandler.sharedInstance().handlePostTask(Udacity.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
+            print(task)
+        }
+    }    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let paddingUserName = UIView(frame: CGRectMake(0, 0, 15, emailTextField.frame.size.height))
+        let paddingUserPass = UIView(frame: CGRectMake(0, 0, 15, emailTextField.frame.size.height))
+        
+        emailTextField.leftView = paddingUserName
+        emailTextField.leftViewMode = UITextFieldViewMode .Always
+        
+        passwordTextField.leftView = paddingUserPass
+        passwordTextField.leftViewMode = UITextFieldViewMode .Always
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        let placeHolderTextUser = NSAttributedString(string: "Your Username", attributes: [NSForegroundColorAttributeName: emailTextField.tintColor])
+        let placeHolderTextPass = NSAttributedString(string: "Your Password", attributes: [NSForegroundColorAttributeName: passwordTextField.tintColor])
+        
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
+        
+        emailTextField.attributedPlaceholder = placeHolderTextUser
+        passwordTextField.attributedPlaceholder = placeHolderTextPass
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
