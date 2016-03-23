@@ -23,13 +23,17 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate {
         geocoder.geocodeAddressString(locationTextField.text!) {
             (placemarks, error) -> Void in
             
+            
             let placemark = placemarks?[0]
             let regionRadius: CLLocationDistance = 1000
             let coordinateRegion = MKCoordinateRegionMakeWithDistance((placemark?.location?.coordinate)!, regionRadius * 2.0, regionRadius * 2.0)
            
             let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PlacePinViewController") as! PlacePinViewController
+            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.latitude = Float(coordinateRegion.center.latitude)
+            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.longitude = Float(coordinateRegion.center.longitude)
+            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.location = self.locationTextField.text!
             
-            controller.coordinateRegion = coordinateRegion            
+            controller.coordinateRegion = coordinateRegion
             self.presentViewController(controller, animated: true, completion: nil)
         }
     }

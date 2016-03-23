@@ -70,22 +70,54 @@
 		644ED42C1C9E624E00EF9297 /* ISeeU-App */ = {
 			isa = PBXGroup;
 			children = (
-				644ED42D1C9E624E00EF9297 /* AppDelegate.swift */,
+				64558E2C1CA2D6BB00928E44 /* Support files */,
+				64558E291CA2D67E00928E44 /* Controller */,
+				64558E2A1CA2D69A00928E44 /* Model */,
+				64558E2B1CA2D6AC00928E44 /* View */,
+			);
+			path = "ISeeU-App";
+			sourceTree = "<group>";
+		};
+		64558E291CA2D67E00928E44 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				644ED42F1C9E624E00EF9297 /* MapViewController.swift */,
 				64F88A8A1CA04B2D004C7CC2 /* LoginViewController.swift */,
 				6457A8FA1C9EAB6A00740606 /* StudentsTableViewController.swift */,
-				644ED43F1C9E790100EF9297 /* RequestHandler.swift */,
 				643FF0231C9FFA8D00B72AE7 /* AddNewPinViewController.swift */,
 				641715C31CA02085007BC3C7 /* PlacePinViewController.swift */,
-				643FF0211C9FB26900B72AE7 /* Student.swift */,
-				6457A8FE1C9EAE5500740606 /* StudentTableViewCell.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		64558E2A1CA2D69A00928E44 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				644ED4411C9E861900EF9297 /* Constants.swift */,
+				644ED43F1C9E790100EF9297 /* RequestHandler.swift */,
+				643FF0211C9FB26900B72AE7 /* Student.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		64558E2B1CA2D6AC00928E44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6457A8FE1C9EAE5500740606 /* StudentTableViewCell.swift */,
 				644ED4311C9E624E00EF9297 /* Main.storyboard */,
-				644ED4341C9E624E00EF9297 /* Assets.xcassets */,
 				644ED4361C9E624E00EF9297 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		64558E2C1CA2D6BB00928E44 /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				644ED42D1C9E624E00EF9297 /* AppDelegate.swift */,
+				644ED4341C9E624E00EF9297 /* Assets.xcassets */,
 				644ED4391C9E624E00EF9297 /* Info.plist */,
 			);
-			path = "ISeeU-App";
+			name = "Support files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

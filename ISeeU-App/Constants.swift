@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 struct ParseApi
 {
@@ -22,6 +22,7 @@ struct UdacityApi
     static let apiPathToCreateSession = "https://www.udacity.com/api/session"
    
 }
+
 
 //user ID 7467194528
 

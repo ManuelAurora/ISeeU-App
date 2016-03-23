@@ -18,10 +18,12 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
     @IBOutlet weak var enterLinkTextField: UITextField!
     
     @IBAction func submitLocation() {
+        (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.mediaURL = enterLinkTextField.text
         
         let currentStudent = (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser
         
         let jsonBody = "{\"uniqueKey\": \"\(currentStudent.udacityKey)\", \"firstName\": \"\(currentStudent.firstName)\", \"lastName\": \"\(currentStudent.lastName)\",\"mapString\": \"\(currentStudent.location)\", \"mediaURL\": \"\(currentStudent.mediaURL)\",\"latitude\": \(currentStudent.latitude), \"longitude\": \(currentStudent.longitude)}"
+        
         
         RequestHandler.sharedInstance().handlePostTask(ParseApi.parseApiPath, jsonBody: jsonBody) {
             (task, error) -> Void in

@@ -11,11 +11,12 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
     
+    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
-    @IBAction func login() {      
+    @IBAction func login() {
         
         let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
         let currentUser = (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser
@@ -32,10 +33,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.studentId = sessionInfo!["id"] as? String
             (UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn = true
             
-            RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(currentUser.udacityKey)", udacity: true, completionHandler: {
+            RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(3903878747)", udacity: true, completionHandler: {
                 (task, error) -> Void in
-                print(task)
-                let a = 2
+                let user = task["user"] as! [String: AnyObject]
+               (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.firstName = user["nickname"] as! String
+               
             })
             
             self.dismissViewControllerAnimated(false, completion: nil)
