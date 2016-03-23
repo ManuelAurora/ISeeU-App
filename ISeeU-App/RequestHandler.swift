@@ -24,11 +24,15 @@ class RequestHandler: NSObject
         
         request.HTTPMethod = "POST"
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-       // request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        //request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-
+        
+        switch udacity {
+        case true:
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+        case false:
+            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        }
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
           
@@ -52,9 +56,9 @@ class RequestHandler: NSObject
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "GET"
         //  var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        //  request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        //request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        print(request)
         let task =  session.dataTaskWithRequest(request) { (data, response, error) -> Void in
         
         self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)

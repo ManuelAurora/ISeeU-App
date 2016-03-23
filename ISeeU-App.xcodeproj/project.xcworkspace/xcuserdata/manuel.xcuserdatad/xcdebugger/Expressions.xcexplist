@@ -3,10 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RequestHandler.(handlePostTask(RequestHandler) -&gt; (String, udacity : Bool, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         contextName = "Request.(handlePostTask(Request) -&gt; (String, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
          <PersistentStrings>
             <PersistentString
-               value = "jsonBody">
+               value = "(response as? NSHTTPURLResponse)?.statusCode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -19,10 +19,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "PlacePinViewController.submitLocation() -&gt; ():PlacePinViewController.swift">
+         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "currentStudent">
+               value = "mapView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RequestHandler.handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "request">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -76,10 +84,10 @@
          contextName = "StudentsTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -87,10 +95,10 @@
          contextName = "MapViewController.(viewDidLoad(MapViewController) -&gt; () -&gt; ()).(closure #1):MapViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
             </PersistentString>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -106,29 +114,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RequestHandler.(handlePostTask(RequestHandler) -&gt; (String, udacity : Bool, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "jsonBody">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Request.(convertDataWithCompletionHandler in _CB25DC3BEE9121E779497650E9918A81)(NSData, udacity : Bool, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PlacePinViewController.submitLocation() -&gt; ():PlacePinViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentStudent">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MapViewController.mapView(MKMapView, viewForAnnotation : MKAnnotation) -&gt; MKAnnotationView?:MapViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "annotation">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Request.(handlePostTask(Request) -&gt; (String, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "(response as? NSHTTPURLResponse)?.statusCode">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "mapView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
