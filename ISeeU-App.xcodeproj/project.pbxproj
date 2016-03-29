@@ -19,6 +19,7 @@
 		644ED4421C9E861900EF9297 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ED4411C9E861900EF9297 /* Constants.swift */; };
 		6457A8FB1C9EAB6A00740606 /* StudentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457A8FA1C9EAB6A00740606 /* StudentsTableViewController.swift */; };
 		6457A8FF1C9EAE5500740606 /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457A8FE1C9EAE5500740606 /* StudentTableViewCell.swift */; };
+		64E227C41CAAC0860090E572 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E227C31CAAC0860090E572 /* Client.swift */; };
 		64F88A8B1CA04B2D004C7CC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F88A8A1CA04B2D004C7CC2 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		644ED4411C9E861900EF9297 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6457A8FA1C9EAB6A00740606 /* StudentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsTableViewController.swift; sourceTree = "<group>"; };
 		6457A8FE1C9EAE5500740606 /* StudentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
+		64E227C31CAAC0860090E572 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		64F88A8A1CA04B2D004C7CC2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				644ED4411C9E861900EF9297 /* Constants.swift */,
+				64E227C31CAAC0860090E572 /* Client.swift */,
 				644ED43F1C9E790100EF9297 /* RequestHandler.swift */,
 				643FF0211C9FB26900B72AE7 /* Student.swift */,
 			);
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E227C41CAAC0860090E572 /* Client.swift in Sources */,
 				644ED4301C9E624E00EF9297 /* MapViewController.swift in Sources */,
 				643FF0241C9FFA8D00B72AE7 /* AddNewPinViewController.swift in Sources */,
 				644ED42E1C9E624E00EF9297 /* AppDelegate.swift in Sources */,

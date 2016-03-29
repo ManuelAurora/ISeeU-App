@@ -10,7 +10,9 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate
-{    
+{
+    var client: Client!
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var mapView: MKMapView!
@@ -18,7 +20,9 @@ class MapViewController: UIViewController, MKMapViewDelegate
     @IBAction func addNewPin(sender: UIBarButtonItem) {
         
         let controller = storyboard?.instantiateViewControllerWithIdentifier("AddNewPinViewController") as! AddNewPinViewController
-     
+        
+        controller.userData = client.userData.currentUser
+        
         presentViewController(controller, animated: true, completion: nil)
         
     }
@@ -27,16 +31,16 @@ class MapViewController: UIViewController, MKMapViewDelegate
      
         RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
             
-            (UIApplication.sharedApplication().delegate as! AppDelegate).students = task["results"] as! [[String: AnyObject]]
+            self.client.students = task["results"] as! [[String: AnyObject]]
             
-            let studentsArray = self.appDelegate.students
-            var annotations = [MKPointAnnotation]()
+            let studentsArray = self.client.students
+            var annotations   = [MKPointAnnotation]()
             
             for person in studentsArray {
                 
                 let student = Student(fromDictionary: person)
                 
-                let lat = CLLocationDegrees(student.latitude!)
+                let lat  = CLLocationDegrees(student.latitude!)
                 let long = CLLocationDegrees(student.longitude!)
                 
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -88,12 +92,17 @@ class MapViewController: UIViewController, MKMapViewDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
-        if !(UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        super.viewWillAppear(animated)
+        
+        guard !client.userData.loggedIn else { return }
+        
+        let storyboard      = UIStoryboard(name: "Main", bundle: nil)
         let loginController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        appDelegate.window?.rootViewController?.presentViewController(loginController, animated: false, completion: nil)
-        }
+        
+        loginController.client = client
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window!.rootViewController!.presentViewController(loginController, animated: false, completion: nil)
     }
-    
 }
 

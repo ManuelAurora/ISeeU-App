@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 
-class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
-    
+class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate
+{
+    var userData: Student!
     var coordinateRegion: MKCoordinateRegion?  
     
     @IBOutlet weak var mapView: MKMapView!
@@ -18,11 +19,9 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
     @IBOutlet weak var enterLinkTextField: UITextField!
     
     @IBAction func submitLocation() {
-        (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.mediaURL = enterLinkTextField.text
+        userData.mediaURL = enterLinkTextField.text
         
-        let currentStudent = (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser
-        
-        let jsonBody = "{\"uniqueKey\": \"\(currentStudent.udacityKey)\", \"firstName\": \"\(currentStudent.firstName)\", \"lastName\": \"\(currentStudent.lastName)\",\"mapString\": \"\(currentStudent.location)\", \"mediaURL\": \"\(currentStudent.mediaURL)\",\"latitude\": \(currentStudent.latitude), \"longitude\": \(currentStudent.longitude)}"
+        let jsonBody = "{\"uniqueKey\": \"\(userData.udacityKey)\", \"firstName\": \"\(userData.firstName)\", \"lastName\": \"\(userData.lastName)\",\"mapString\": \"\(userData.location)\", \"mediaURL\": \"\(userData.mediaURL)\",\"latitude\": \(userData.latitude), \"longitude\": \(userData.longitude)}"
         
         
         RequestHandler.sharedInstance().handlePostTask(ParseApi.parseApiPath, jsonBody: jsonBody) {
@@ -59,7 +58,7 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
         
         mapView.addAnnotation(annotation)
         
-        mapView.setRegion(coordinateRegion!, animated: true)        
+        mapView.setRegion(coordinateRegion!, animated: true)       
 
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
     
+    var client: Client!
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -19,24 +20,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBAction func login() {
         
         let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
-        let currentUser = (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser
-       
+        var currentUser        = client.userData.currentUser       
         
         RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
             guard let data = task as? [String: AnyObject] else { print("failed"); return }
             guard error == nil else { print(error); return }
             
-            let sessionInfo = data["session"] as? [String: AnyObject]
+           // let sessionInfo = data["session"] as? [String: AnyObject]
             let accountInfo = data["account"] as? [String: AnyObject]
             
-            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.udacityKey = accountInfo!["key"] as? String
-            (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.studentId = sessionInfo!["id"] as? String
-            (UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn = true
+            currentUser.udacityKey   = accountInfo!["key"] as? String
+            currentUser.studentId    = accountInfo!["id"]  as? String
+           
+            self.client.userData.loggedIn = true
             
             RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(3903878747)", udacity: true, completionHandler: {
                 (task, error) -> Void in
+                
                 let user = task["user"] as! [String: AnyObject]
-               (UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.firstName = user["nickname"] as! String
+                
+               currentUser.firstName = user["nickname"] as! String
                
             })
             
@@ -73,5 +76,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
