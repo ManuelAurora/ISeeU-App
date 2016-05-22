@@ -11,11 +11,18 @@ import UIKit
 
 class RequestHandler: NSObject
 {
-    let session = NSURLSession.sharedSession()
+    let session       = NSURLSession.sharedSession()
+    var downloadTasks = [NSURLSessionDataTask]()
     
     override init() {
         super.init()
         
+    }
+    
+    func cancel() {
+        for task in downloadTasks {
+            task.cancel()
+        }
     }
     
     func handlePostTask(url: String, udacity: Bool = false, jsonBody: String, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
@@ -35,7 +42,7 @@ class RequestHandler: NSObject
         }
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-          
+            
             func sendError(error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey: error]
@@ -48,6 +55,7 @@ class RequestHandler: NSObject
             
             self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
         }
+        downloadTasks.append(task)
         task.resume()
     }
     
@@ -64,6 +72,7 @@ class RequestHandler: NSObject
         self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
         
         }
+        downloadTasks.append(task)
         task.resume()
         
     }

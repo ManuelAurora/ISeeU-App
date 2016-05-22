@@ -19,8 +19,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func login() {
         
-        let authorizationJson  = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
+        guard loginButton.titleLabel!.text != "Cancel" else { loginButton.viewWithTag(666)!.removeFromSuperview(); changeTitle("Log In"); RequestHandler.sharedInstance().cancel();  return }
         
+        let actInd = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        
+        view.addSubview(actInd)
+        
+        actInd.center = CGPointMake(loginButton.frame.size.width - actInd.frame.width, loginButton.frame.size.height / 2)
+        actInd.tag    = 666
+        
+        loginButton.addSubview(actInd)
+        
+        actInd.startAnimating()
+        
+        changeTitle("Cancel")
+        
+        let authorizationJson  = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
+                
         RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
             
             guard error == nil else { self.client.handleError(error!, controller: self); return }
@@ -44,6 +59,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 
                 self.client.userData.currentUser.firstName = user["nickname"]  as! String
                 self.client.userData.currentUser.lastName  = user["last_name"] as! String
+                
+                dispatch_sync(dispatch_get_main_queue(), { 
+                    self.changeTitle("Log In")
+                })
+                
                 self.client.loadMainControllers()                
             })
         }
@@ -77,5 +97,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func changeTitle(title: String) {
+        loginButton.setTitle(title, forState: .Normal)
     }
 }

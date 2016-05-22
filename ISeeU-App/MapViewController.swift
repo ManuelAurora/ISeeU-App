@@ -17,14 +17,18 @@ class MapViewController: UIViewController, MKMapViewDelegate
     
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBAction func refresh(sender: UIBarButtonItem) {
+        requestInfo()
+        mapView.reloadInputViews()        
+    }
+    
     @IBAction func addNewPin(sender: UIBarButtonItem) {
         
         let controller = storyboard?.instantiateViewControllerWithIdentifier("AddNewPinViewController") as! AddNewPinViewController
         
         controller.client = client
         
-        presentViewController(controller, animated: true, completion: nil)
-        
+        presentViewController(controller, animated: true, completion: nil)        
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
@@ -33,40 +37,8 @@ class MapViewController: UIViewController, MKMapViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
-            
-            guard error == nil else { self.client.handleError(error!, controller: self); return }
-            
-            self.client.students = task["results"] as! [[String: AnyObject]]
-            
-            let studentsArray = self.client.students
-            var annotations   = [MKPointAnnotation]()
-            
-            for person in studentsArray {
-                
-                let student = Student(fromDictionary: person)
-                
-                let lat  = CLLocationDegrees(student.latitude!)
-                let long = CLLocationDegrees(student.longitude!)
-                
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                
-                let firstName = student.firstName!
-                let lastName  = student.lastName!
-                let mediaURL  = student.mediaURL!
-                
-                let annotation = MKPointAnnotation()
-                annotation.title = "\(firstName) \(lastName)"
-                annotation.coordinate = coordinate
-                annotation.subtitle = mediaURL
-                
-                annotations.append(annotation)
-            }
-            
-            self.mapView.addAnnotations(annotations)
-        }
         
+        requestInfo()
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -110,6 +82,41 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.window!.rootViewController!.presentViewController(loginController, animated: false, completion: nil)
+    }
+    
+    func requestInfo() {
+        RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
+            
+            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            
+            self.client.students = task["results"] as! [[String: AnyObject]]
+            
+            let studentsArray = self.client.students
+            var annotations   = [MKPointAnnotation]()
+            
+            for person in studentsArray {
+                
+                let student = Student(fromDictionary: person)
+                
+                let lat  = CLLocationDegrees(student.latitude!)
+                let long = CLLocationDegrees(student.longitude!)
+                
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let firstName = student.firstName!
+                let lastName  = student.lastName!
+                let mediaURL  = student.mediaURL!
+                
+                let annotation = MKPointAnnotation()
+                annotation.title = "\(firstName) \(lastName)"
+                annotation.coordinate = coordinate
+                annotation.subtitle = mediaURL
+                
+                annotations.append(annotation)
+            }
+            
+            self.mapView.addAnnotations(annotations)
+        }
     }
 }
 

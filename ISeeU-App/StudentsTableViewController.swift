@@ -38,7 +38,6 @@ class StudentsTableViewController: UITableViewController
         // #warning Incomplete implementation, return the number of rows
         return client.students.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell", forIndexPath: indexPath) as! StudentTableViewCell
@@ -61,8 +60,6 @@ class StudentsTableViewController: UITableViewController
         guard let link = url else { return }
         
         app.openURL(NSURL(string: link)!)
-        
-    }
-    
+    }    
     
 }

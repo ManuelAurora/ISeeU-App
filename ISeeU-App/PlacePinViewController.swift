@@ -33,9 +33,7 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
         RequestHandler.sharedInstance().handlePostTask(ParseApi.parseApiPath, jsonBody: jsonBody) {
             (task, error) -> Void in
             
-            guard error == nil else { self.client.handleError(error!, controller: self); return }
-            
-            
+            guard error == nil else { self.client.handleError(error!, controller: self); return }            
         }
         
         self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)

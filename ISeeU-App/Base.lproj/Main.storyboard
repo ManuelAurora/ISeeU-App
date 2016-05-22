@@ -41,7 +41,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="I6Y-n4-Cgv"/>
+                            <barButtonItem systemItem="refresh" id="I6Y-n4-Cgv">
+                                <connections>
+                                    <action selector="refresh:" destination="BYZ-38-t0r" id="nhg-6b-Dem"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="pin" id="DyQ-5f-81N">
                                 <connections>
                                     <action selector="addNewPin:" destination="BYZ-38-t0r" id="nn0-5H-uZJ"/>
@@ -98,7 +102,7 @@
         <!--Students Table View Controller-->
         <scene sceneID="t7M-fe-kYS">
             <objects>
-                <tableViewController id="EIh-iT-aEr" customClass="StudentsTableViewController" customModule="ISeeU_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StudentsTable" id="EIh-iT-aEr" customClass="StudentsTableViewController" customModule="ISeeU_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="w8T-E7-7dS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,6 +191,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wam-D9-L43">
+                                <rect key="frame" x="30" y="200" width="260" height="268"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="I9f-67-c6L">
                                 <rect key="frame" x="30" y="200" width="260" height="268"/>
                                 <subviews>
@@ -219,7 +227,7 @@
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="qu1-Dx-sai"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Login">
+                                        <state key="normal" title="Log In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -240,10 +248,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Wam-D9-L43" firstAttribute="bottom" secondItem="I9f-67-c6L" secondAttribute="bottom" id="IUG-m9-qFQ"/>
                             <constraint firstItem="I9f-67-c6L" firstAttribute="leading" relation="lessThanOrEqual" secondItem="c2f-Za-81V" secondAttribute="leading" constant="30" id="dR3-eE-HTr"/>
                             <constraint firstItem="CLt-OQ-Ntq" firstAttribute="top" secondItem="I9f-67-c6L" secondAttribute="bottom" constant="100" id="hMd-NV-OZB"/>
+                            <constraint firstItem="Wam-D9-L43" firstAttribute="trailing" secondItem="I9f-67-c6L" secondAttribute="trailing" id="hiZ-qT-bSK"/>
                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="I9f-67-c6L" secondAttribute="trailing" constant="30" id="jTK-VE-UY8"/>
+                            <constraint firstItem="Wam-D9-L43" firstAttribute="top" secondItem="I9f-67-c6L" secondAttribute="top" id="kUJ-OF-Aaf"/>
                             <constraint firstItem="I9f-67-c6L" firstAttribute="top" secondItem="qe7-3M-NlJ" secondAttribute="bottom" constant="180" id="sir-bT-GWT"/>
+                            <constraint firstItem="Wam-D9-L43" firstAttribute="leading" secondItem="I9f-67-c6L" secondAttribute="leading" id="tf7-Rk-5Ob"/>
                         </constraints>
                     </view>
                     <connections>
@@ -297,7 +309,7 @@
                                                 <color key="tintColor" red="0.82624772589999995" green="0.85364583329999999" blue="0.84066351179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" red="0.82624772589999995" green="0.85364583329999999" blue="0.84066351179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="qNm-HI-BKD" id="eD2-FZ-xVA"/>
                                                 </connections>
@@ -391,7 +403,7 @@
                                         <color key="tintColor" red="0.82624772589999995" green="0.85364583329999999" blue="0.84066351179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="0.82624772589999995" green="0.85364583329999999" blue="0.84066351179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                         <connections>
                                             <outlet property="delegate" destination="q5P-73-Wh0" id="5AQ-mo-zlj"/>
                                         </connections>
