@@ -12,18 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    var client = Client()
-    
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let tabBarController   = window!.rootViewController as! UITabBarController
-        let navControllers     = tabBarController.viewControllers
-        let mapController      = navControllers![0].childViewControllers[0] as! MapViewController
-        let studentsController = navControllers![1].childViewControllers[0] as! StudentsTableViewController
-        
-        mapController.client      = client
-        studentsController.client = client        
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {        
         
         return true
     }

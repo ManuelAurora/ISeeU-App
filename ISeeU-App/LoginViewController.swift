@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
     
-    var client: Client!
+    var client = Client()
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -20,7 +20,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBAction func login() {
         
         let authorizationJson  = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
-        var currentUser        = client.userData.currentUser       
         
         RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
             
@@ -28,22 +27,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             guard let data = task as? [String: AnyObject] else { print("failed"); return }
             
             let accountInfo = data["account"] as? [String: AnyObject]
+            let sessionInfo = data["session"] as? [String: AnyObject]
             
-            currentUser.udacityKey   = accountInfo!["key"] as? String
-            currentUser.studentId    = accountInfo!["id"]  as? String
+            let key = accountInfo!["key"] as? String
+            let id  = sessionInfo!["id"]  as? String
+            
+            self.client.userData.currentUser.udacityKey = key!
+            self.client.userData.currentUser.studentId  = id!
            
             self.client.userData.loggedIn = true
             
-            RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(3903878747)", udacity: true, completionHandler: {
+            RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(key!)", udacity: true, completionHandler: {
                 (task, error) -> Void in
                 
                 let user = task["user"] as! [String: AnyObject]
                 
-               currentUser.firstName = user["nickname"] as! String
-               
+                self.client.userData.currentUser.firstName = user["nickname"]  as! String
+                self.client.userData.currentUser.lastName  = user["last_name"] as! String
+                self.client.loadMainControllers()                
             })
-            
-            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
     

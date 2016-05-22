@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "LoginViewController.(login() -&gt; ()).(closure #1).(closure #1):LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.client.userData.currentUser.firstName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MapViewController.viewDidLoad() -&gt; ():MapViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -22,10 +30,10 @@
          contextName = "StudentsTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -43,6 +51,37 @@
             <PersistentString
                value = "accountInfo![&quot;id&quot;] ">
             </PersistentString>
+            <PersistentString
+               value = "accountInfo![&quot;key&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "accountInfo![&quot;id&quot;]  as? String">
+            </PersistentString>
+            <PersistentString
+               value = "self.client.userData.currentUser.udacityKey">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MapViewController.(viewDidLoad(MapViewController) -&gt; () -&gt; ()).(closure #1):MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "students">
+            </PersistentString>
+            <PersistentString
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Request.urlFromParameters([String : AnyObject], withExtenstion : String?) -&gt; NSURL:RequestHandler.swift">
+      </ContextState>
+      <ContextState
+         contextName = "LoginViewController.(login(LoginViewController) -&gt; () -&gt; ()).(closure #1):LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -54,32 +93,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MapViewController.(viewDidLoad(MapViewController) -&gt; () -&gt; ()).(closure #1):MapViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
-            </PersistentString>
-            <PersistentString
-               value = "students">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoginViewController.(login(LoginViewController) -&gt; () -&gt; ()).(closure #1):LoginViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).loggedIn">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Request.urlFromParameters([String : AnyObject], withExtenstion : String?) -&gt; NSURL:RequestHandler.swift">
-      </ContextState>
-      <ContextState
          contextName = "StudentsTableViewController.viewDidLoad() -&gt; ():StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "students">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MapViewController.Logout(UIBarButtonItem) -&gt; ():MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "client.appDelegate.window!.rootViewController!.presentedViewController! is UITabBarController">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -145,6 +170,9 @@
          <PersistentStrings>
             <PersistentString
                value = "controller is LoginViewController ">
+            </PersistentString>
+            <PersistentString
+               value = "controller is MapViewController">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

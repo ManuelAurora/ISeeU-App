@@ -11,19 +11,23 @@ import MapKit
 
 class AddNewPinViewController: UIViewController, UITextFieldDelegate
 {
-    var userData: Student!
+    var client: Client!
     
-    @IBOutlet weak var titleLAbel: UILabel!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var titleLAbel:        UILabel!
+    @IBOutlet weak var mapView:           MKMapView!
     @IBOutlet weak var locationTextField: UITextField!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var findButton: UIButton!
     
     @IBAction func findOnTheMap() {
         
+        activityIndicator.hidden = false
+        
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(locationTextField.text!) {
             (placemarks, error) -> Void in
+            
+            guard error == nil else { self.client.handleError(error!, controller: self); return }
             
             let placemark = placemarks?[0]
             
@@ -31,17 +35,23 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate
             
             let coordinateRegion = MKCoordinateRegionMakeWithDistance((placemark?.location?.coordinate)!, regionRadius * 2.0, regionRadius * 2.0)
             
-            self.userData.latitude  = Float(coordinateRegion.center.latitude)
-            self.userData.longitude = Float(coordinateRegion.center.longitude)
-            self.userData.location  = self.locationTextField.text!
+            self.client.userData.currentUser.latitude  = Float(coordinateRegion.center.latitude)
+            self.client.userData.currentUser.longitude = Float(coordinateRegion.center.longitude)
+            self.client.userData.currentUser.location  = self.locationTextField.text!
             
             let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PlacePinViewController") as! PlacePinViewController
             
+            controller.client           = self.client
             controller.coordinateRegion = coordinateRegion
-            controller.userData = self.userData
+            
+            self.activityIndicator.hidden = true
             
             self.presentViewController(controller, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func cancelButton(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
         override func viewDidLoad() {

@@ -21,11 +21,16 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         let controller = storyboard?.instantiateViewControllerWithIdentifier("AddNewPinViewController") as! AddNewPinViewController
         
-        controller.userData = client.userData.currentUser
+        controller.client = client
         
         presentViewController(controller, animated: true, completion: nil)
         
     }
+    
+    @IBAction func Logout(sender: UIBarButtonItem) {
+        client.appDelegate.window!.rootViewController!.presentedViewController!.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      

@@ -11,27 +11,34 @@ import MapKit
 
 class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate
 {
-    var userData: Student!
+    var client: Client!
     var coordinateRegion: MKCoordinateRegion?  
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var enterLinkTextField: UITextField!
     
+    @IBAction func cancel(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func submitLocation() {
-        userData.mediaURL = enterLinkTextField.text
+        
+        client.userData.currentUser.mediaURL = enterLinkTextField.text
+        
+        let userData = client.userData.currentUser
         
         let jsonBody = "{\"uniqueKey\": \"\(userData.udacityKey)\", \"firstName\": \"\(userData.firstName)\", \"lastName\": \"\(userData.lastName)\",\"mapString\": \"\(userData.location)\", \"mediaURL\": \"\(userData.mediaURL)\",\"latitude\": \(userData.latitude), \"longitude\": \(userData.longitude)}"
         
-        
         RequestHandler.sharedInstance().handlePostTask(ParseApi.parseApiPath, jsonBody: jsonBody) {
             (task, error) -> Void in
-           print(task)
+            
+            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            
+            
         }
         
-        dismissViewControllerAnimated(false) { () -> Void in
-            self.dismissViewControllerAnimated(false, completion: nil)
-        }
+        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
