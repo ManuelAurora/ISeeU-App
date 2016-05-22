@@ -87,7 +87,7 @@ class RequestHandler: NSObject
       
     }
 
-    private func convertDataWithCompletionHandler(data: NSData, udacity: Bool, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    func convertDataWithCompletionHandler(data: NSData, udacity: Bool, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         var newData:    NSData! // Used if we parcing Udacity
         var parsedJson: AnyObject!
         
