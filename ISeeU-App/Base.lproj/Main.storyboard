@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
@@ -34,11 +35,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iHX-4i-UC2">
-                        <barButtonItem key="leftBarButtonItem" image="pin" id="DyQ-5f-81N">
-                            <connections>
-                                <action selector="addNewPin:" destination="BYZ-38-t0r" id="nn0-5H-uZJ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="6U1-dK-Kku"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="I6Y-n4-Cgv"/>
+                            <barButtonItem image="pin" id="DyQ-5f-81N">
+                                <connections>
+                                    <action selector="addNewPin:" destination="BYZ-38-t0r" id="nn0-5H-uZJ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="mSB-ia-bfr" id="xML-GX-Tcd"/>
@@ -190,7 +195,7 @@
                                         </constraints>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K8n-h6-9wW">
                                         <rect key="frame" x="0.0" y="62" width="260" height="50"/>
@@ -201,7 +206,7 @@
                                         </constraints>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6L-ND-RjG">
                                         <rect key="frame" x="0.0" y="124" width="260" height="55"/>
@@ -245,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XBx-IU-p2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1310" y="-156"/>
+            <point key="canvasLocation" x="2" y="-141"/>
         </scene>
         <!--Add New Pin View Controller-->
         <scene sceneID="ds3-3C-M5y">

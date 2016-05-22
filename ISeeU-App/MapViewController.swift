@@ -31,6 +31,8 @@ class MapViewController: UIViewController, MKMapViewDelegate
      
         RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
             
+            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            
             self.client.students = task["results"] as! [[String: AnyObject]]
             
             let studentsArray = self.client.students

@@ -52,4 +52,17 @@ class StudentsTableViewController: UITableViewController
 
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let app = UIApplication.sharedApplication()
+        let url = client.students[indexPath.row]["mediaURL"] as? String
+        
+        guard let link = url else { return }
+        
+        app.openURL(NSURL(string: link)!)
+        
+    }
+    
+    
 }

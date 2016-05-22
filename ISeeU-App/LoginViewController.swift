@@ -19,14 +19,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func login() {
         
-        let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
+        let authorizationJson  = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
         var currentUser        = client.userData.currentUser       
         
         RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
-            guard let data = task as? [String: AnyObject] else { print("failed"); return }
-            guard error == nil else { print(error); return }
             
-           // let sessionInfo = data["session"] as? [String: AnyObject]
+            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            guard let data = task as? [String: AnyObject] else { print("failed"); return }
+            
             let accountInfo = data["account"] as? [String: AnyObject]
             
             currentUser.udacityKey   = accountInfo!["key"] as? String

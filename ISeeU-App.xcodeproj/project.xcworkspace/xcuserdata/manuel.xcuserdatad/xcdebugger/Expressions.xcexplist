@@ -3,48 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Request.(convertDataWithCompletionHandler in _CB25DC3BEE9121E779497650E9918A81)(NSData, udacity : Bool, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.(viewDidLoad(ViewController) -&gt; () -&gt; ()).(closure #1):ViewController.swift">
+         contextName = "LoginViewController.(login() -&gt; ()).(closure #1).(closure #1).(closure #1):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "account[&quot;key&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "PlacePinViewController.submitLocation() -&gt; ():PlacePinViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "currentStudent">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MapViewController.mapView(MKMapView, viewForAnnotation : MKAnnotation) -&gt; MKAnnotationView?:MapViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "annotation">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoginViewController.(login(LoginViewController) -&gt; () -&gt; ()).(closure #1).(closure #1):LoginViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.studentId">
-            </PersistentString>
-            <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.udacityKey ">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoginViewController.(login() -&gt; ()).(closure #1):LoginViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "accountInfo![&quot;id&quot;] ">
+               value = "currentUser.firstName">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -53,33 +15,6 @@
          <PersistentStrings>
             <PersistentString
                value = "dict">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "StudentsTableViewController.viewDidLoad() -&gt; ():StudentsTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "students">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoginViewController.login() -&gt; ():LoginViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "loggedIn">
-            </PersistentString>
-            <PersistentString
-               value = "currentUser">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MapViewController.viewWillAppear(Bool) -&gt; ():MapViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "loggedIn">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -95,6 +30,30 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "MapViewController.viewWillAppear(Bool) -&gt; ():MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "loggedIn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoginViewController.(login() -&gt; ()).(closure #1):LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "accountInfo![&quot;id&quot;] ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MapViewController.mapView(MKMapView, viewForAnnotation : MKAnnotation) -&gt; MKAnnotationView?:MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "annotation">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MapViewController.(viewDidLoad(MapViewController) -&gt; () -&gt; ()).(closure #1):MapViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -106,9 +65,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Request.urlFromParameters([String : AnyObject], withExtenstion : String?) -&gt; NSURL:RequestHandler.swift">
-      </ContextState>
-      <ContextState
          contextName = "LoginViewController.(login(LoginViewController) -&gt; () -&gt; ()).(closure #1):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -117,18 +73,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Request.(handlePostTask(Request) -&gt; (String, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         contextName = "Request.urlFromParameters([String : AnyObject], withExtenstion : String?) -&gt; NSURL:RequestHandler.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StudentsTableViewController.viewDidLoad() -&gt; ():StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(response as? NSHTTPURLResponse)?.statusCode">
+               value = "students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RequestHandler.handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+         contextName = "LoginViewController.(login(LoginViewController) -&gt; () -&gt; ()).(closure #1).(closure #1):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "request">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.studentId">
+            </PersistentString>
+            <PersistentString
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).currentUser.udacityKey ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -141,10 +103,64 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PlacePinViewController.submitLocation() -&gt; ():PlacePinViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentStudent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Request.(convertDataWithCompletionHandler in _CB25DC3BEE9121E779497650E9918A81)(NSData, udacity : Bool, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+      </ContextState>
+      <ContextState
          contextName = "RequestHandler.(handlePostTask(RequestHandler) -&gt; (String, udacity : Bool, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
          <PersistentStrings>
             <PersistentString
                value = "jsonBody">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Request.(handlePostTask(Request) -&gt; (String, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(response as? NSHTTPURLResponse)?.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoginViewController.login() -&gt; ():LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "loggedIn">
+            </PersistentString>
+            <PersistentString
+               value = "currentUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Client.handleError(NSError, controller : UIViewController) -&gt; ():Client.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "controller is LoginViewController ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.(viewDidLoad(ViewController) -&gt; () -&gt; ()).(closure #1):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "account[&quot;key&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RequestHandler.handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "request">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
