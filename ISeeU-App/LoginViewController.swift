@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
@@ -20,80 +19,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func login() {
         
-        //let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
+        let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField!.text!)\", \"password\": \"\(passwordTextField!.text!)\"}}"
+        var currentUser        = client.userData.currentUser       
         
-        let parameters = [
-            "udacity": [
-                "username": emailTextField!.text!,
-                "password": passwordTextField!.text!
-            ]
-        ]
-        
-        let headers = [
-            "Content-Type": "application/json",
-            "Accept"      : "application/json"
-        ]
-        
-        var currentUser        = client.userData.currentUser
-        
-        Alamofire.request(.POST, UdacityApi.apiPathToCreateSession, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
-            (response) in
+        RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
+            guard let data = task as? [String: AnyObject] else { print("failed"); return }
+            guard error == nil else { print(error); return }
             
-            print(response.request)  // original URL request
-            print(response.response) // URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
+           // let sessionInfo = data["session"] as? [String: AnyObject]
+            let accountInfo = data["account"] as? [String: AnyObject]
             
-            let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/\(3903878747)")!)
-            request.HTTPMethod = "GET"
-            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+            currentUser.udacityKey   = accountInfo!["key"] as? String
+            currentUser.studentId    = accountInfo!["id"]  as? String
+           
+            self.client.userData.loggedIn = true
             
-            Alamofire.request(request).responseJSON(completionHandler: {
-                (response) in
+            RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(3903878747)", udacity: true, completionHandler: {
+                (task, error) -> Void in
                 
-                RequestHandler.sharedInstance().convertDataWithCompletionHandler(response.data!, udacity: true, completionHandler: {
-                    (result, error) in
-                    
-                    currentUser.firstName = (result["user"] as! [String: AnyObject])["nickname"] as! String
-                    
-                    
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                })
+                let user = task["user"] as! [String: AnyObject]
                 
+               currentUser.firstName = user["nickname"] as! String
+               
             })
+            
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
-    
-    //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    //
-    //        switch udacity {
-    //        case true:
-    //            request.addValue("application/json", forHTTPHeaderField: "Accept")
-    //        case false:
-    //            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-    //            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-    //        }
-    
-    
-    
-    //        RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
-    //            guard let data = task as? [String: AnyObject] else { print("failed"); return }
-    //            guard error == nil else { print(error); return }
-    //
-    //            // let sessionInfo = data["session"] as? [String: AnyObject]
-    //            let accountInfo = data["account"] as? [String: AnyObject]
-    //
-    //            currentUser.udacityKey   = accountInfo!["key"] as? String
-    //            currentUser.studentId    = accountInfo!["id"]  as? String
-    //
-    //            self.client.userData.loggedIn = true
-    //
-    //
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         emailTextField.attributedPlaceholder = placeHolderTextUser
         passwordTextField.attributedPlaceholder = placeHolderTextPass
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
