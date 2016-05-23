@@ -13,29 +13,27 @@ class MapViewController: UIViewController, MKMapViewDelegate
 {
     var manager = Manager.sharedInstance()
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate    
-    @IBOutlet weak var mapView: MKMapView!
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    @IBOutlet weak var map: MKMapView!
     
     @IBAction func refresh(sender: UIBarButtonItem) {
-        requestInfo()
-        mapView.reloadInputViews()        
+         manager.refresh(caller: self)
     }
     
     @IBAction func addNewPin(sender: UIBarButtonItem) {
-        
-        let controller = storyboard?.instantiateViewControllerWithIdentifier("AddNewPinViewController") as! AddNewPinViewController
-                
-        presentViewController(controller, animated: true, completion: nil)        
+      
+        manager.addNewPin(caller: self)
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
-        manager.appDelegate.window!.rootViewController!.presentedViewController!.dismissViewControllerAnimated(true, completion: nil)
+        
+        manager.logout(caller: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        requestInfo()
+        manager.requestInfoFor(self)       
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -78,47 +76,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         appDelegate.window!.rootViewController!.presentViewController(loginController, animated: false, completion: nil)
-    }
-    
-    func requestInfo() {
-        
-        let baseURL = ParseApi.parseApiPath
-        let params  = ParseApi.parseParameters
-        
-        let fullUrl = baseURL + params.stringFromHttpParameters()
-        
-        RequestHandler.sharedInstance().handleGetTask(fullUrl) { (task, error) -> Void in
-            
-            guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
-            
-            self.manager.students = task["results"] as! [[String: AnyObject]]
-            
-            let studentsArray = self.manager.students
-            var annotations   = [MKPointAnnotation]()
-            
-            for person in studentsArray {
-                
-                let student = Student(fromDictionary: person)
-                
-                let lat  = CLLocationDegrees(student.latitude!)
-                let long = CLLocationDegrees(student.longitude!)
-                
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                
-                let firstName = student.firstName!
-                let lastName  = student.lastName!
-                let mediaURL  = student.mediaURL!
-                
-                let annotation = MKPointAnnotation()
-                annotation.title = "\(firstName) \(lastName)"
-                annotation.coordinate = coordinate
-                annotation.subtitle = mediaURL
-                
-                annotations.append(annotation)
-            }
-            
-            self.mapView.addAnnotations(annotations)
-        }
     }
 }
 

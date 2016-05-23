@@ -24,6 +24,35 @@ class RequestHandler: NSObject
         }
     }
     
+    func handleDeleteSessionTask(url: String) {
+
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        
+         request.HTTPMethod = "DELETE"
+        
+        var xsrfCookie: NSHTTPCookie? = nil
+        
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        
+        for cookie in sharedCookieStorage.cookies! {
+            print(cookie.name)
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            guard error == nil else { return }
+            
+            let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
+            print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+        }
+        task.resume()
+    }
+    
     func handlePostTask(url: String, udacity: Bool = false, jsonBody: String, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
                 
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)

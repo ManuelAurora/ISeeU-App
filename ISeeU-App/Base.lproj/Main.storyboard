@@ -54,7 +54,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="mSB-ia-bfr" id="xML-GX-Tcd"/>
+                        <outlet property="map" destination="mSB-ia-bfr" id="KKF-7c-aQG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -158,7 +158,25 @@
                             <outlet property="delegate" destination="EIh-iT-aEr" id="raU-pb-wHt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Wnj-Jw-ZbE"/>
+                    <navigationItem key="navigationItem" id="Wnj-Jw-ZbE">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="ObT-NJ-Yo5">
+                            <connections>
+                                <action selector="logout:" destination="EIh-iT-aEr" id="L1z-ig-ZSw"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="a0E-RR-RPr">
+                                <connections>
+                                    <action selector="refresh:" destination="EIh-iT-aEr" id="RPD-IS-unY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="pin" id="AmM-fW-yYV">
+                                <connections>
+                                    <action selector="addNewPin:" destination="EIh-iT-aEr" id="neX-zm-dnG"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kbn-yb-c1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

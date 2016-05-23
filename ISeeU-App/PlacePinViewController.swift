@@ -86,6 +86,5 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
+    }    
 }

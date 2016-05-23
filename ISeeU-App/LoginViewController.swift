@@ -63,9 +63,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 dispatch_sync(dispatch_get_main_queue(), { 
                     self.changeTitle("Log In")
                     
-                self.manager.loadMainControllers()
+                    self.manager.loadMainControllers()
                 })
-
             })
         }
     }

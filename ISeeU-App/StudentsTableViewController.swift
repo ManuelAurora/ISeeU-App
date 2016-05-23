@@ -12,8 +12,20 @@ class StudentsTableViewController: UITableViewController
 {
     var manager = Manager.sharedInstance()
       
-    // MARK: - Table view data source
+    @IBAction func refresh(sender: UIBarButtonItem) {
+        manager.refresh(caller: self)
+    }
+    
+    @IBAction func addNewPin(sender: UIBarButtonItem) {
+        manager.addNewPin(caller: self)
+    }
+   
+    @IBAction func logout(sender: UIBarButtonItem) {
+        manager.logout(caller: self)
+    }
 
+    // MARK: - Table view data source
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
        
         return 1
@@ -46,6 +58,5 @@ class StudentsTableViewController: UITableViewController
         guard let link = url else { return }
         
         app.openURL(NSURL(string: link)!)
-    }
-    
+    }    
 }

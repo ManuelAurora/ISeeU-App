@@ -21,7 +21,7 @@ class StudentTableViewCell: UITableViewCell
         let navController = tabBar.viewControllers
         let mapController = navController![0].childViewControllers[0] as! MapViewController
         
-        let mapView = mapController.mapView
+        let mapView = mapController.map
         let student = Manager.sharedInstance().students[button.tag]
         
         let latitude  = student["latitude"]  as! Double
