@@ -15,8 +15,7 @@ class RequestHandler: NSObject
     var downloadTasks = [NSURLSessionDataTask]()
     
     override init() {
-        super.init()
-        
+        super.init()        
     }
     
     func cancel() {
@@ -33,12 +32,14 @@ class RequestHandler: NSObject
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        switch udacity {
+        switch udacity
+        {
         case true:
             request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
         case false:
-            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue(ParseApi.parseAppId,  forHTTPHeaderField: ParseApi.headerAppId)
+            request.addValue(ParseApi.parseAPIKey, forHTTPHeaderField: ParseApi.headerRESTk)
         }
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
@@ -63,28 +64,35 @@ class RequestHandler: NSObject
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "GET"
-        //  var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    
+        request.addValue(ParseApi.parseAppId, forHTTPHeaderField:  ParseApi.headerAppId)
+        request.addValue(ParseApi.parseAPIKey, forHTTPHeaderField: ParseApi.headerRESTk)
         print(request)
+        
         let task =  session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-        
-        self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
-        
+            
+            guard error == nil else {
+                
+                let delegate   = UIApplication.sharedApplication().delegate as! AppDelegate
+                let controller = delegate.window!.rootViewController        as! LoginViewController
+                let tabbar = controller.presentedViewController             as! UITabBarController
+                
+                let map = tabbar.childViewControllers[0].childViewControllers[0] as? MapViewController
+                
+                Manager.sharedInstance().errorHandler.handleError(error!, controller: map!); return
+            }
+       
+            self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
         }
-        downloadTasks.append(task)
-        task.resume()
         
+        downloadTasks.append(task)
+        task.resume()        
     }
     
     
     func urlFromParameters(parameters: [String: AnyObject], withExtenstion: String?) -> NSURL {
         
         let components = NSURLComponents()
-        
-       // components.path   = Constants.parseAPIPath + (withExtenstion ?? "")
-        //components.scheme = Constants.apiScheme
-      //  components.host   = Constants.parseAPIHost
         
         for (key, value) in parameters {
             let queryItem = NSURLQueryItem(name: key, value: "\(value)")

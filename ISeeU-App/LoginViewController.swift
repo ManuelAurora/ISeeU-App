@@ -11,15 +11,15 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
     
-    var client = Client()
+    let manager = Manager.sharedInstance()
     
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton:       UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailTextField:    UITextField!
     
     @IBAction func login() {
         
-        guard loginButton.titleLabel!.text != "Cancel" else { loginButton.viewWithTag(666)!.removeFromSuperview(); changeTitle("Log In"); RequestHandler.sharedInstance().cancel();  return }
+        guard loginButton.titleLabel!.text != "Cancel" else { renewMainMenu(); return }
         
         let actInd = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         
@@ -34,11 +34,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         changeTitle("Cancel")
         
-        let authorizationJson  = "{\"udacity\": {\"username\": \"manuel.aurora@yandex.ru\", \"password\": \"luntik11\"}}"
+        let authorizationJson  = "{\"udacity\": {\"username\": \"\(emailTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}"
                 
         RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
             
-            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
             guard let data = task as? [String: AnyObject] else { print("failed"); return }
             
             let accountInfo = data["account"] as? [String: AnyObject]
@@ -47,24 +47,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             let key = accountInfo!["key"] as? String
             let id  = sessionInfo!["id"]  as? String
             
-            self.client.userData.currentUser.udacityKey = key!
-            self.client.userData.currentUser.studentId  = id!
+            self.manager.userData.currentUser.udacityKey = key!
+            self.manager.userData.currentUser.studentId  = id!
            
-            self.client.userData.loggedIn = true
-            
+            self.manager.userData.loggedIn = true
+                        
             RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(key!)", udacity: true, completionHandler: {
                 (task, error) -> Void in
                 
                 let user = task["user"] as! [String: AnyObject]
                 
-                self.client.userData.currentUser.firstName = user["nickname"]  as! String
-                self.client.userData.currentUser.lastName  = user["last_name"] as! String
+                self.manager.userData.currentUser.firstName = user["nickname"]  as! String
+                self.manager.userData.currentUser.lastName  = user["last_name"] as! String
                 
                 dispatch_sync(dispatch_get_main_queue(), { 
                     self.changeTitle("Log In")
+                    
+                self.manager.loadMainControllers()
                 })
-                
-                self.client.loadMainControllers()                
+
             })
         }
     }
@@ -101,5 +102,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     func changeTitle(title: String) {
         loginButton.setTitle(title, forState: .Normal)
+    }
+    
+    func renewMainMenu() {
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.loginButton.viewWithTag(666)!.removeFromSuperview()
+            self.changeTitle("Log In")
+            RequestHandler.sharedInstance().cancel()
+        }    
     }
 }

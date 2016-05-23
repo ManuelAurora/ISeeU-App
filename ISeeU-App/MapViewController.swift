@@ -11,10 +11,9 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate
 {
-    var client: Client!
+    var manager = Manager.sharedInstance()
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate    
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func refresh(sender: UIBarButtonItem) {
@@ -25,14 +24,12 @@ class MapViewController: UIViewController, MKMapViewDelegate
     @IBAction func addNewPin(sender: UIBarButtonItem) {
         
         let controller = storyboard?.instantiateViewControllerWithIdentifier("AddNewPinViewController") as! AddNewPinViewController
-        
-        controller.client = client
-        
+                
         presentViewController(controller, animated: true, completion: nil)        
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
-        client.appDelegate.window!.rootViewController!.presentedViewController!.dismissViewControllerAnimated(true, completion: nil)
+        manager.appDelegate.window!.rootViewController!.presentedViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -73,25 +70,30 @@ class MapViewController: UIViewController, MKMapViewDelegate
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard !client.userData.loggedIn else { return }
+        guard !manager.userData.loggedIn else { return }
         
         let storyboard      = UIStoryboard(name: "Main", bundle: nil)
         let loginController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
-        loginController.client = client
-        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         appDelegate.window!.rootViewController!.presentViewController(loginController, animated: false, completion: nil)
     }
     
     func requestInfo() {
-        RequestHandler.sharedInstance().handleGetTask("https://api.parse.com/1/classes/StudentLocation") { (task, error) -> Void in
+        
+        let baseURL = ParseApi.parseApiPath
+        let params  = ParseApi.parseParameters
+        
+        let fullUrl = baseURL + params.stringFromHttpParameters()
+        
+        RequestHandler.sharedInstance().handleGetTask(fullUrl) { (task, error) -> Void in
             
-            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
             
-            self.client.students = task["results"] as! [[String: AnyObject]]
+            self.manager.students = task["results"] as! [[String: AnyObject]]
             
-            let studentsArray = self.client.students
+            let studentsArray = self.manager.students
             var annotations   = [MKPointAnnotation]()
             
             for person in studentsArray {

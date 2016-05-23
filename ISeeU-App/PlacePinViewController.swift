@@ -11,7 +11,8 @@ import MapKit
 
 class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate
 {
-    var client: Client!
+    var manager = Manager.sharedInstance()
+    
     var coordinateRegion: MKCoordinateRegion?  
     
     @IBOutlet weak var mapView: MKMapView!
@@ -24,16 +25,16 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
     
     @IBAction func submitLocation() {
         
-        client.userData.currentUser.mediaURL = enterLinkTextField.text
+        manager.userData.currentUser.mediaURL = enterLinkTextField.text
         
-        let userData = client.userData.currentUser
+        let userData = manager.userData.currentUser
         
         let jsonBody = "{\"uniqueKey\": \"\(userData.udacityKey)\", \"firstName\": \"\(userData.firstName)\", \"lastName\": \"\(userData.lastName)\",\"mapString\": \"\(userData.location)\", \"mediaURL\": \"\(userData.mediaURL)\",\"latitude\": \(userData.latitude), \"longitude\": \(userData.longitude)}"
         
         RequestHandler.sharedInstance().handlePostTask(ParseApi.parseApiPath, jsonBody: jsonBody) {
             (task, error) -> Void in
             
-            guard error == nil else { self.client.handleError(error!, controller: self); return }            
+            guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
         }
         
         self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)

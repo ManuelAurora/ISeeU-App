@@ -11,10 +11,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RequestHandler.handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+         contextName = "LoginViewController.(login() -&gt; ()).(closure #1).(closure #1):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "request">
+               value = "self.client.userData.currentUser.firstName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StudentsTableViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():StudentsTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StudentTableViewCell.showLocation(UIButton) -&gt; ():StudentTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sender.superview">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,15 +112,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RequestHandler.(handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = " controller.presentationController&#10; controller.presentationController&#10;controller.presentationController">
+            </PersistentString>
+            <PersistentString
+               value = " controller.presentedViewController as! UITabBarController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Client.loadMainControllers() -&gt; ():Client.swift">
+      </ContextState>
+      <ContextState
          contextName = "StudentsTableViewController.viewDidLoad() -&gt; ():StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "students">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Client.loadMainControllers() -&gt; ():Client.swift">
       </ContextState>
       <ContextState
          contextName = "MapViewController.Logout(UIBarButtonItem) -&gt; ():MapViewController.swift">
@@ -143,6 +165,14 @@
          <PersistentStrings>
             <PersistentString
                value = "mapView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ErrorHandler.handleError(NSError, controller : UIViewController) -&gt; ():Client.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -185,6 +215,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RequestHandler.handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "request">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.(viewDidLoad(ViewController) -&gt; () -&gt; ()).(closure #1):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "account[&quot;key&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Client.handleError(NSError, controller : UIViewController) -&gt; ():Client.swift">
          <PersistentStrings>
             <PersistentString
@@ -201,22 +247,6 @@
             </PersistentString>
             <PersistentString
                value = "error.description">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoginViewController.(login() -&gt; ()).(closure #1).(closure #1):LoginViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.client.userData.currentUser.firstName">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.(viewDidLoad(ViewController) -&gt; () -&gt; ()).(closure #1):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "account[&quot;key&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

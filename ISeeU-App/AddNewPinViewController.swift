@@ -11,7 +11,7 @@ import MapKit
 
 class AddNewPinViewController: UIViewController, UITextFieldDelegate
 {
-    var client: Client!
+    var manager = Manager.sharedInstance()
     
     @IBOutlet weak var titleLAbel:        UILabel!
     @IBOutlet weak var mapView:           MKMapView!
@@ -27,7 +27,7 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate
         geocoder.geocodeAddressString(locationTextField.text!) {
             (placemarks, error) -> Void in
             
-            guard error == nil else { self.client.handleError(error!, controller: self); return }
+            guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
             
             let placemark = placemarks?[0]
             
@@ -35,13 +35,12 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate
             
             let coordinateRegion = MKCoordinateRegionMakeWithDistance((placemark?.location?.coordinate)!, regionRadius * 2.0, regionRadius * 2.0)
             
-            self.client.userData.currentUser.latitude  = Float(coordinateRegion.center.latitude)
-            self.client.userData.currentUser.longitude = Float(coordinateRegion.center.longitude)
-            self.client.userData.currentUser.location  = self.locationTextField.text!
+            self.manager.userData.currentUser.latitude  = Float(coordinateRegion.center.latitude)
+            self.manager.userData.currentUser.longitude = Float(coordinateRegion.center.longitude)
+            self.manager.userData.currentUser.location  = self.locationTextField.text!
             
             let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PlacePinViewController") as! PlacePinViewController
-            
-            controller.client           = self.client
+                        
             controller.coordinateRegion = coordinateRegion
             
             self.activityIndicator.hidden = true

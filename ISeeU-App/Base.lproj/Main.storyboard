@@ -124,6 +124,9 @@
                                                         <constraint firstAttribute="width" constant="40" id="DR8-MR-2T7"/>
                                                     </constraints>
                                                     <state key="normal" image="pin"/>
+                                                    <connections>
+                                                        <action selector="showLocation:" destination="cc1-ez-3CW" eventType="touchUpInside" id="lWp-IM-Sfo"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYi-7a-2ze">
                                                     <rect key="frame" x="40" y="0.0" width="280" height="43"/>
@@ -145,7 +148,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="studentNameLabel" destination="oYi-7a-2ze" id="Hti-Df-LHt"/>
+                                    <outlet property="button" destination="fBF-bc-XEd" id="Zpb-OY-UNU"/>
+                                    <outlet property="studentNameLabel" destination="oYi-7a-2ze" id="UoO-5h-2YP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
