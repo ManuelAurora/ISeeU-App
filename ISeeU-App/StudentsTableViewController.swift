@@ -55,7 +55,7 @@ class StudentsTableViewController: UITableViewController
         let app = UIApplication.sharedApplication()
         let url = manager.students[indexPath.row]["mediaURL"] as? String
         
-        guard let link = url else { return }
+        guard let link = url where url!.containsString("https://") else { return }
         
         app.openURL(NSURL(string: link)!)
     }    
