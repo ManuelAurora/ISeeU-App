@@ -40,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             
             guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
             guard let data = task as? [String: AnyObject] else { print("failed"); return }
-            
+         
             let accountInfo = data["account"] as? [String: AnyObject]
             let sessionInfo = data["session"] as? [String: AnyObject]
             

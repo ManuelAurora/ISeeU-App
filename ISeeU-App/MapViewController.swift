@@ -40,7 +40,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
             
-            guard let urlToOpen = view.annotation!.subtitle! else { return }
+            guard let urlToOpen = view.annotation!.subtitle! where urlToOpen.containsString("https://") || urlToOpen.containsString("http://") else { return }
             
             app.openURL(NSURL(string: urlToOpen)!)
         }

@@ -35,9 +35,9 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
             (task, error) -> Void in
             
             guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
-        }
-        
-        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            
+              self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }        
     }
     
     override func viewDidLoad() {

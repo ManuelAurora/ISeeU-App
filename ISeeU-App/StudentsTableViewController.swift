@@ -39,7 +39,7 @@ class StudentsTableViewController: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell", forIndexPath: indexPath) as! StudentTableViewCell
         
-        let student = Student(fromDictionary: manager.students[indexPath.row])
+        let student = manager.students[indexPath.row]
         
         let firstName = student.firstName!
         let lastName = student.lastName!
@@ -53,9 +53,9 @@ class StudentsTableViewController: UITableViewController
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let app = UIApplication.sharedApplication()
-        let url = manager.students[indexPath.row]["mediaURL"] as? String
+        let url = manager.students[indexPath.row].mediaURL
         
-        guard let link = url where url!.containsString("https://") else { return }
+        guard let link = url where url!.containsString("https://") || url!.containsString("http://") else { return }
         
         app.openURL(NSURL(string: link)!)
     }    

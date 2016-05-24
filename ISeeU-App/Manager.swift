@@ -11,7 +11,7 @@ import MapKit
 
 class Manager
 {
-    var students      = [[String: AnyObject]]()
+    var students      = [Student]()
     var userData      = UserData()
     let appDelegate   = UIApplication.sharedApplication().delegate as! AppDelegate
     let errorHandler  = ErrorHandler()
@@ -51,7 +51,9 @@ class Manager
             
             guard error == nil else { self.errorHandler.handleError(error!, controller: caller); return }
             
-            self.students = task["results"] as! [[String: AnyObject]]
+            guard let results = task["results"] as? [[String: AnyObject]] else { return }
+            
+            self.parseStudents(results)
             
             self.updateMapAndTable()
         }
@@ -66,9 +68,7 @@ class Manager
         
         var annotations  = [MKPointAnnotation]()
         
-        for person in students {
-            
-            let student = Student(fromDictionary: person)
+        for student in students {
             
             let lat  = CLLocationDegrees(student.latitude!)
             let long = CLLocationDegrees(student.longitude!)
@@ -105,6 +105,17 @@ class Manager
         RequestHandler.sharedInstance().handleDeleteSessionTask(UdacityApi.apiPathToCreateSession)
     }
     
+    func parseStudents(results: [[String: AnyObject]]) {
+        
+        for student in results {
+            
+            let student = Student(fromDictionary: student)
+            
+            self.students.append(student)
+            
+        }
+    }
+    
     class func sharedInstance() -> Manager {
         struct Singleton {
             static let sharedInstance = Manager()
@@ -129,7 +140,12 @@ struct ErrorHandler {
         let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
         
         if controller is LoginViewController && error.description.containsString("There is no data") {
-            return
+            
+            let controller = controller as! LoginViewController
+            
+            alertMessage = "Connection fails"
+            
+            controller.renewMainMenu()
         }
             
         else if controller is LoginViewController {

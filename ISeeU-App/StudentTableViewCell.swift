@@ -24,9 +24,8 @@ class StudentTableViewCell: UITableViewCell
         let mapView = mapController.map
         let student = Manager.sharedInstance().students[button.tag]
         
-        let latitude  = student["latitude"]  as! Double
-        let longitude = student["longitude"] as! Double
-        
+        let latitude  = student.latitude
+        let longitude = student.longitude
         let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         let region     = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000)
         

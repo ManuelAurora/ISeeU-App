@@ -35,8 +35,8 @@ class AddNewPinViewController: UIViewController, UITextFieldDelegate
             
             let coordinateRegion = MKCoordinateRegionMakeWithDistance((placemark?.location?.coordinate)!, regionRadius * 2.0, regionRadius * 2.0)
             
-            self.manager.userData.currentUser.latitude  = Float(coordinateRegion.center.latitude)
-            self.manager.userData.currentUser.longitude = Float(coordinateRegion.center.longitude)
+            self.manager.userData.currentUser.latitude  = coordinateRegion.center.latitude
+            self.manager.userData.currentUser.longitude = coordinateRegion.center.longitude
             self.manager.userData.currentUser.location  = self.locationTextField.text!
             
             let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PlacePinViewController") as! PlacePinViewController

@@ -11,9 +11,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "StudentsTableViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():StudentsTableViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "MapViewController.mapView.getter:MapViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -31,10 +28,10 @@
                value = "accountInfo![&quot;key&quot;]">
             </PersistentString>
             <PersistentString
-               value = "accountInfo![&quot;id&quot;]  as? String">
+               value = "error!.description">
             </PersistentString>
             <PersistentString
-               value = "self.client.userData.currentUser.udacityKey">
+               value = "accountInfo![&quot;id&quot;]  as? String">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -50,6 +47,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Request.(handlePostTask(Request) -&gt; (String, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(response as? NSHTTPURLResponse)?.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -61,20 +66,15 @@
          contextName = "Request.urlFromParameters([String : AnyObject], withExtenstion : String?) -&gt; NSURL:RequestHandler.swift">
       </ContextState>
       <ContextState
-         contextName = "Request.(handlePostTask(Request) -&gt; (String, jsonBody : String, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "(response as? NSHTTPURLResponse)?.statusCode">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "RequestHandler.handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():RequestHandler.swift">
          <PersistentStrings>
             <PersistentString
                value = "request">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StudentsTableViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():StudentsTableViewController.swift">
       </ContextState>
       <ContextState
          contextName = "LoginViewController.(login(LoginViewController) -&gt; () -&gt; ()).(closure #1):LoginViewController.swift">
@@ -128,6 +128,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PlacePinViewController.(submitLocation() -&gt; ()).(closure #1):PlacePinViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error!.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MapViewController.(requestInfo() -&gt; ()).(closure #1):MapViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -152,16 +160,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "specialized Manager.(updateMap() -&gt; ()).(closure #1):Manager.swift">
+         contextName = "RequestHandler.handleDeleteSessionTask(String) -&gt; ():RequestHandler.swift">
          <PersistentStrings>
             <PersistentString
-               value = " self.mapView">
+               value = "url">
             </PersistentString>
             <PersistentString
-               value = "mapController.map">
+               value = "xsrfCookie.name">
             </PersistentString>
             <PersistentString
-               value = "navControllers![0].childViewControllers[0] as! MapViewController&#10;">
+               value = "cookie.name">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -177,10 +185,10 @@
          contextName = "MapViewController.(viewDidLoad(MapViewController) -&gt; () -&gt; ()).(closure #1):MapViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
             </PersistentString>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -188,24 +196,24 @@
          contextName = "StudentsTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:StudentsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "students">
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
             </PersistentString>
             <PersistentString
-               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).students">
+               value = "students">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RequestHandler.handleDeleteSessionTask(String) -&gt; ():RequestHandler.swift">
+         contextName = "specialized Manager.(updateMap() -&gt; ()).(closure #1):Manager.swift">
          <PersistentStrings>
             <PersistentString
-               value = "url">
+               value = "navControllers![0].childViewControllers[0] as! MapViewController&#10;">
             </PersistentString>
             <PersistentString
-               value = "xsrfCookie.name">
+               value = "mapController.map">
             </PersistentString>
             <PersistentString
-               value = "cookie.name">
+               value = " self.mapView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -237,10 +245,10 @@
          contextName = "RequestHandler.(handleGetTask(String, udacity : Bool, completionHandler : (task : AnyObject!, error : NSError?) -&gt; ()) -&gt; ()).(closure #1):RequestHandler.swift">
          <PersistentStrings>
             <PersistentString
-               value = " controller.presentationController&#10; controller.presentationController&#10;controller.presentationController">
+               value = " controller.presentedViewController as! UITabBarController">
             </PersistentString>
             <PersistentString
-               value = " controller.presentedViewController as! UITabBarController">
+               value = " controller.presentationController&#10; controller.presentationController&#10;controller.presentationController">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
