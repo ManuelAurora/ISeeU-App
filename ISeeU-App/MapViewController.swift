@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class MapViewController: UIViewController, MKMapViewDelegate
 {
     var manager = Manager.sharedInstance()

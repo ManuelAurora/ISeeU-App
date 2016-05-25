@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
     
     let manager = Manager.sharedInstance()
+    let loginManager = FBSDKLoginManager()
     
     @IBOutlet weak var loginButton:       UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField:    UITextField!
-    
+        
     @IBAction func login() {
         
         guard loginButton.titleLabel!.text != "Cancel" else { renewMainMenu(); return }
@@ -70,7 +73,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
+       
+        createFBButton()
         
         let paddingUserName = UIView(frame: CGRectMake(0, 0, 15, emailTextField.frame.size.height))
         let paddingUserPass = UIView(frame: CGRectMake(0, 0, 15, emailTextField.frame.size.height))
@@ -109,5 +114,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             self.changeTitle("Log In")
             RequestHandler.sharedInstance().cancel()
         }    
+    }
+    
+    func createFBButton() {
+        
+        let loginButton = FBSDKLoginButton()
+        
+        loginButton.center.x = self.view.center.x
+        loginButton.center.y = view.frame.height - (loginButton.frame.height * 2)
+        view.addSubview(loginButton)
+                
     }
 }

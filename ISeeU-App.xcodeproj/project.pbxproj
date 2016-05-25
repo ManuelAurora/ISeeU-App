@@ -11,6 +11,8 @@
 		643839411CF2F99000EB6394 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643839401CF2F99000EB6394 /* Utility.swift */; };
 		643FF0221C9FB26900B72AE7 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643FF0211C9FB26900B72AE7 /* Student.swift */; };
 		643FF0241C9FFA8D00B72AE7 /* AddNewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643FF0231C9FFA8D00B72AE7 /* AddNewPinViewController.swift */; };
+		644BE5251CF5BBCB003BA49B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */; };
+		644BE5271CF5BE4E003BA49B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644BE5261CF5BE4E003BA49B /* FBSDKLoginKit.framework */; };
 		644ED42E1C9E624E00EF9297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ED42D1C9E624E00EF9297 /* AppDelegate.swift */; };
 		644ED4301C9E624E00EF9297 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ED42F1C9E624E00EF9297 /* MapViewController.swift */; };
 		644ED4331C9E624E00EF9297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644ED4311C9E624E00EF9297 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		643839401CF2F99000EB6394 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		643FF0211C9FB26900B72AE7 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		643FF0231C9FFA8D00B72AE7 /* AddNewPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPinViewController.swift; sourceTree = "<group>"; };
+		644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Users/manuel/Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		644BE5261CF5BE4E003BA49B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Users/manuel/Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		644ED42A1C9E624E00EF9297 /* ISeeU-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISeeU-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		644ED42D1C9E624E00EF9297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644ED42F1C9E624E00EF9297 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -49,15 +53,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644BE5271CF5BE4E003BA49B /* FBSDKLoginKit.framework in Frameworks */,
+				644BE5251CF5BBCB003BA49B /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		644BE3701CF5B930003BA49B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				644BE5261CF5BE4E003BA49B /* FBSDKLoginKit.framework */,
+				644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		644ED4211C9E624E00EF9297 = {
 			isa = PBXGroup;
 			children = (
+				644BE3701CF5B930003BA49B /* Frameworks */,
 				644ED42C1C9E624E00EF9297 /* ISeeU-App */,
 				644ED42B1C9E624E00EF9297 /* Products */,
 			);
@@ -319,6 +335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = /Users/Manuel/Documents/FacebookSDK;
 				INFOPLIST_FILE = "ISeeU-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AM.ISeeU-App";
@@ -330,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = /Users/Manuel/Documents/FacebookSDK;
 				INFOPLIST_FILE = "ISeeU-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AM.ISeeU-App";

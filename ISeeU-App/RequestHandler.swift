@@ -53,6 +53,28 @@ class RequestHandler: NSObject
         task.resume()
     }
     
+    func handlePostTaskFacebook(url: String, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+                
+        request.HTTPMethod = "POST"
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        request.HTTPBody = UdacityApi.facebookHTTPBody.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            guard error == nil else { return }
+            
+            self.convertDataWithCompletionHandler(data!, udacity: true, completionHandler: { (result, error) in
+                completionHandler(task: result, error: error)
+            })
+        }
+        
+        task.resume()
+    }
+    
     func handlePostTask(url: String, udacity: Bool = false, jsonBody: String, completionHandler: (task: AnyObject!, error: NSError?) -> Void) {
                 
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
