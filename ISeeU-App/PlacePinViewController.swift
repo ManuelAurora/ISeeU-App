@@ -36,7 +36,9 @@ class PlacePinViewController: UIViewController, MKMapViewDelegate, UITextFieldDe
             
             guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
             
-              self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            NSOperationQueue.mainQueue().addOperationWithBlock({ 
+                 self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            })            
         }        
     }
     

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		641715C41CA02085007BC3C7 /* PlacePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641715C31CA02085007BC3C7 /* PlacePinViewController.swift */; };
 		643839411CF2F99000EB6394 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643839401CF2F99000EB6394 /* Utility.swift */; };
+		643D47EA1D0ABC1A002B769F /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D47E91D0ABC1A002B769F /* DataStore.swift */; };
 		643FF0221C9FB26900B72AE7 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643FF0211C9FB26900B72AE7 /* Student.swift */; };
 		643FF0241C9FFA8D00B72AE7 /* AddNewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643FF0231C9FFA8D00B72AE7 /* AddNewPinViewController.swift */; };
 		644BE5251CF5BBCB003BA49B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		641715C31CA02085007BC3C7 /* PlacePinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePinViewController.swift; sourceTree = "<group>"; };
 		643839401CF2F99000EB6394 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		643D47E91D0ABC1A002B769F /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		643FF0211C9FB26900B72AE7 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		643FF0231C9FFA8D00B72AE7 /* AddNewPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPinViewController.swift; sourceTree = "<group>"; };
 		644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Users/manuel/Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				644ED4411C9E861900EF9297 /* Constants.swift */,
+				643D47E91D0ABC1A002B769F /* DataStore.swift */,
 				64E227C31CAAC0860090E572 /* Manager.swift */,
 				644ED43F1C9E790100EF9297 /* RequestHandler.swift */,
 				643FF0211C9FB26900B72AE7 /* Student.swift */,
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643D47EA1D0ABC1A002B769F /* DataStore.swift in Sources */,
 				64E227C41CAAC0860090E572 /* Manager.swift in Sources */,
 				644ED4301C9E624E00EF9297 /* MapViewController.swift in Sources */,
 				643FF0241C9FFA8D00B72AE7 /* AddNewPinViewController.swift in Sources */,

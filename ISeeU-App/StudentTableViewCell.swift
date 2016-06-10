@@ -22,7 +22,7 @@ class StudentTableViewCell: UITableViewCell
         let mapController = navController![0].childViewControllers[0] as! MapViewController
         
         let mapView = mapController.map
-        let student = Manager.sharedInstance().students[button.tag]
+        let student = DataStore.sharedInstance().students[button.tag]
         
         let latitude  = student.latitude
         let longitude = student.longitude

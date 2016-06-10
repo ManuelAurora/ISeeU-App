@@ -10,7 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate
 {
     
     let manager = Manager.sharedInstance()
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 dispatch_sync(dispatch_get_main_queue(), { 
                     self.changeTitle("Log In")
                     
-                    self.manager.loadMainControllers()
+                    self.manager.loadMainControllers(false)
                 })
             })
         }
@@ -120,9 +120,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         let loginButton = FBSDKLoginButton()
         
+        loginButton.delegate = self
         loginButton.center.x = self.view.center.x
         loginButton.center.y = view.frame.height - (loginButton.frame.height * 2)
         view.addSubview(loginButton)
-                
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        loginManager.logOut()
+        manager.loadMainControllers(true)
+    }
+ 
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        //Not decided yet :3
     }
 }

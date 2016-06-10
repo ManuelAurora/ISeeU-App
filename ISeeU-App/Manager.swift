@@ -11,12 +11,12 @@ import MapKit
 
 class Manager
 {
-    var students      = [Student]()
     var userData      = UserData()
     let appDelegate   = UIApplication.sharedApplication().delegate as! AppDelegate
     let errorHandler  = ErrorHandler()
+    let dataStore     = DataStore.sharedInstance()
     
-    func loadMainControllers() {
+    func loadMainControllers(fb: Bool) {
         
         let tabBarController   = appDelegate.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("MainTabBar") as! UITabBarController
         let navControllers     = tabBarController.viewControllers
@@ -27,10 +27,12 @@ class Manager
         studentsController.manager = self
         
         let loginController = appDelegate.window!.rootViewController! as! LoginViewController        
-        
-        let spinner = loginController.loginButton.viewWithTag(666) as! UIActivityIndicatorView
-        
-        spinner.removeFromSuperview()
+       
+        if !fb {
+            let spinner = loginController.loginButton.viewWithTag(666) as! UIActivityIndicatorView
+            
+            spinner.removeFromSuperview()
+        }
         
         loginController.presentViewController(tabBarController, animated: true, completion: nil)
     }
@@ -68,7 +70,7 @@ class Manager
         
         var annotations  = [MKPointAnnotation]()
         
-        for student in students {
+        for student in dataStore.students {
             
             let lat  = CLLocationDegrees(student.latitude!)
             let long = CLLocationDegrees(student.longitude!)
@@ -111,7 +113,7 @@ class Manager
             
             let student = Student(fromDictionary: student)
             
-            self.students.append(student)
+            self.dataStore.students.append(student)
             
         }
     }
@@ -187,4 +189,18 @@ struct ErrorHandler {
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
+    
+    func showAlert(title: String, message: String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        return alert
+        
+    }
+    
+    
 }

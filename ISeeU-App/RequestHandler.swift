@@ -121,9 +121,24 @@ class RequestHandler: NSObject
         print(request)
         
         let task =  session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        
+            if self.checkStatusCodeValid(response?.description) == false {
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                
+                if let controller = appDelegate.window!.rootViewController! as? LoginViewController {
+                    
+                    controller.presentViewController(Manager.sharedInstance().errorHandler.showAlert("Error occured", message: "Please, try again"), animated: true, completion: nil)
+                    controller.renewMainMenu()
+                }
+             })
+                return                
+            }
             
             guard error == nil else {
-                
+              
                 let delegate   = UIApplication.sharedApplication().delegate as! AppDelegate
                 let controller = delegate.window!.rootViewController        as! LoginViewController
                 let tabbar = controller.presentedViewController             as! UITabBarController
@@ -178,5 +193,19 @@ class RequestHandler: NSObject
         return Singleton.sharedInstance
     }
  
+    func checkStatusCodeValid(code: String?) -> Bool {
+        
+        guard let code = code else { return false }
+        
+        for number in 400...406 {
+            
+            if code.containsString(String(number)) {
+                
+                return true
+            }
+        }
+        
+        return true
+    }
     
 }
