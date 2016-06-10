@@ -33,8 +33,8 @@
 		643D47E91D0ABC1A002B769F /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		643FF0211C9FB26900B72AE7 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		643FF0231C9FFA8D00B72AE7 /* AddNewPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPinViewController.swift; sourceTree = "<group>"; };
-		644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Users/manuel/Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		644BE5261CF5BE4E003BA49B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Users/manuel/Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		644BE5241CF5BBCB003BA49B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		644BE5261CF5BE4E003BA49B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		644ED42A1C9E624E00EF9297 /* ISeeU-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISeeU-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		644ED42D1C9E624E00EF9297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644ED42F1C9E624E00EF9297 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
