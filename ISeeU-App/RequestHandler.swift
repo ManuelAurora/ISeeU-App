@@ -177,6 +177,8 @@ class RequestHandler: NSObject
         do {          
             if udacity { newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) } // SKIP THE FIRST 5 CHARACTERS OF THE RESPONSE.            
             parsedJson = try NSJSONSerialization.JSONObjectWithData(udacity ? newData : data , options: .AllowFragments)
+            
+            print(parsedJson)
         }
         catch {
             let userInfo = [NSLocalizedDescriptionKey: "Unable to parse data \(data)"]
