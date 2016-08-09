@@ -28,10 +28,12 @@ class Manager
         
         let loginController = appDelegate.window!.rootViewController! as! LoginViewController        
        
-        if !fb {
-            let spinner = loginController.loginButton.viewWithTag(666) as! UIActivityIndicatorView
-            
-            spinner.removeFromSuperview()
+        if !fb
+        {
+            if let spinner = loginController.loginButton.viewWithTag(666) as? UIActivityIndicatorView
+            {
+                spinner.removeFromSuperview()
+            }
         }
         
         loginController.presentViewController(tabBarController, animated: true, completion: nil)
@@ -135,13 +137,13 @@ struct UserData
 
 struct ErrorHandler {
     
-    func handleError(error: NSError, controller: UIViewController) {
+    func handleError(error: NSError?, controller: UIViewController) {
         
         var alertMessage = ""
         
         let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
         
-        if controller is LoginViewController && error.description.containsString("There is no data") {
+        if controller is LoginViewController && error!.description.containsString("There is no data") {
             
             let controller = controller as! LoginViewController
             
@@ -158,7 +160,7 @@ struct ErrorHandler {
             controller.renewMainMenu()            
         }
             
-        else if controller is MapViewController && error.description.containsString("There is no data") {
+        else if controller is MapViewController && error!.description.containsString("There is no data") {
             alertMessage = "Please, check your internet connection"
         }
             

@@ -16,6 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     let manager = Manager.sharedInstance()
     let loginManager = FBSDKLoginManager()
     
+    var sessionCreated: Bool = false
+       
     @IBOutlet weak var loginButton:       UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField:    UITextField!
@@ -41,7 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 
         RequestHandler.sharedInstance().handlePostTask(UdacityApi.apiPathToCreateSession, udacity: true, jsonBody: authorizationJson) { (task, error) -> Void in
             
-            guard error == nil else { self.manager.errorHandler.handleError(error!, controller: self); return }
+            guard error == nil else { self.manager.errorHandler.handleError(error, controller: self); return }
             guard let data = task as? [String: AnyObject] else { print("failed"); return }
          
             let accountInfo = data["account"] as? [String: AnyObject]
@@ -54,6 +56,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             self.manager.userData.currentUser.studentId  = id!
            
             self.manager.userData.loggedIn = true
+            
+            self.sessionCreated = true
                         
             RequestHandler.sharedInstance().handleGetTask("https://www.udacity.com/api/users/\(key!)", udacity: true, completionHandler: {
                 (task, error) -> Void in
@@ -63,13 +67,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 self.manager.userData.currentUser.firstName = user["nickname"]  as! String
                 self.manager.userData.currentUser.lastName  = user["last_name"] as! String
                 
-                dispatch_sync(dispatch_get_main_queue(), { 
-                    self.changeTitle("Log In")
-                    
-                    self.manager.loadMainControllers(false)
-                })
+                if self.sessionCreated
+                {
+                    dispatch_sync(dispatch_get_main_queue(), {
+                        
+                        self.changeTitle("Log In")
+                        
+                        self.manager.loadMainControllers(false)
+                        
+                    })
+                }
             })
         }
+        
     }
     
     override func viewDidLoad() {
@@ -109,8 +119,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func renewMainMenu() {
-        dispatch_async(dispatch_get_main_queue()) { 
-            self.loginButton.viewWithTag(666)!.removeFromSuperview()
+        dispatch_async(dispatch_get_main_queue()) {
+            
+         if let spinner = self.loginButton.viewWithTag(666)
+         {
+            spinner.removeFromSuperview()
+         }
             self.changeTitle("Log In")
             RequestHandler.sharedInstance().cancel()
         }    

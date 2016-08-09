@@ -23,6 +23,7 @@ class RequestHandler: NSObject
             task.cancel()
         }
     }
+      
     
     func handleDeleteSessionTask(url: String) {
 
@@ -118,18 +119,30 @@ class RequestHandler: NSObject
     
         request.addValue(ParseApi.parseAppId, forHTTPHeaderField:  ParseApi.headerAppId)
         request.addValue(ParseApi.parseAPIKey, forHTTPHeaderField: ParseApi.headerRESTk)
-        print(request)
+      
         
         let task =  session.dataTaskWithRequest(request) { (data, response, error) -> Void in
         
-            if self.checkStatusCodeValid(response?.description) == false {
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            guard error == nil else {
                 
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let controller = appDelegate.window!.rootViewController as! LoginViewController
+                let tabbar = controller.presentedViewController         as! UITabBarController
+                
+                let map = tabbar.childViewControllers[0].childViewControllers[0] as? MapViewController
+                
+                Manager.sharedInstance().errorHandler.handleError(error!, controller: map!); return
+            }
+            
+            if self.checkStatusCodeValid(response?.description) == false {
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock({
                 
                 if let controller = appDelegate.window!.rootViewController! as? LoginViewController {
                     
+                    controller.parseResponseOK = false
                     controller.presentViewController(Manager.sharedInstance().errorHandler.showAlert("Error occured", message: "Please, try again"), animated: true, completion: nil)
                     controller.renewMainMenu()
                 }
@@ -137,17 +150,6 @@ class RequestHandler: NSObject
                 return                
             }
             
-            guard error == nil else {
-              
-                let delegate   = UIApplication.sharedApplication().delegate as! AppDelegate
-                let controller = delegate.window!.rootViewController        as! LoginViewController
-                let tabbar = controller.presentedViewController             as! UITabBarController
-                
-                let map = tabbar.childViewControllers[0].childViewControllers[0] as? MapViewController
-                
-                Manager.sharedInstance().errorHandler.handleError(error!, controller: map!); return
-            }
-       
             self.convertDataWithCompletionHandler(data!, udacity: udacity, completionHandler: completionHandler)
         }
         
@@ -177,8 +179,7 @@ class RequestHandler: NSObject
         do {          
             if udacity { newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) } // SKIP THE FIRST 5 CHARACTERS OF THE RESPONSE.            
             parsedJson = try NSJSONSerialization.JSONObjectWithData(udacity ? newData : data , options: .AllowFragments)
-            
-            print(parsedJson)
+          
         }
         catch {
             let userInfo = [NSLocalizedDescriptionKey: "Unable to parse data \(data)"]
@@ -199,11 +200,15 @@ class RequestHandler: NSObject
         
         guard let code = code else { return false }
         
-        for number in 400...406 {
+       let scanner = NSScanner(string: code)
+        
+        for var number in 400...406 {
             
-            if code.containsString(String(number)) {
-                
-                return true
+        
+            let nm = scanner.scanInteger(&number)
+            
+            if nm {
+                return false
             }
         }
         
