@@ -140,9 +140,8 @@ class RequestHandler: NSObject
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock({
                 
-                if let controller = appDelegate.window!.rootViewController! as? LoginViewController {
+                if let controller = appDelegate.window!.rootViewController! as? LoginViewController {                    
                     
-                    controller.parseResponseOK = false
                     controller.presentViewController(Manager.sharedInstance().errorHandler.showAlert("Error occured", message: "Please, try again"), animated: true, completion: nil)
                     controller.renewMainMenu()
                 }
