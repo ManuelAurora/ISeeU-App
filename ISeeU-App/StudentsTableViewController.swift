@@ -38,14 +38,16 @@ class StudentsTableViewController: UITableViewController
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell", forIndexPath: indexPath) as! StudentTableViewCell
         
         let student = dataStore.students[indexPath.row]
         
-        let firstName = student.firstName!
-        let lastName = student.lastName!
+        if  let firstName = student.firstName,  let lastName = student.lastName
+        {
+            cell.studentNameLabel.text = "\(firstName) \(lastName)"
+        }
         
-        cell.studentNameLabel.text = "\(firstName) \(lastName)"
         cell.button.tag = indexPath.row
         
         return cell

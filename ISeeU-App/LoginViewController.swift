@@ -79,7 +79,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 }
             })
         }
-        
     }
     
     override func viewDidLoad() {

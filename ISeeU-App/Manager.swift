@@ -74,21 +74,24 @@ class Manager
         
         for student in dataStore.students {
             
-            let lat  = CLLocationDegrees(student.latitude!)
-            let long = CLLocationDegrees(student.longitude!)
-            
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            let firstName = student.firstName!
-            let lastName  = student.lastName!
-            let mediaURL  = student.mediaURL!
-            
-            let annotation = MKPointAnnotation()
-            annotation.title = "\(firstName) \(lastName)"
-            annotation.coordinate = coordinate
-            annotation.subtitle = mediaURL
-            
-            annotations.append(annotation)
+            if let latitude = student.latitude, let longitude = student.longitude
+            {
+                let lat  = CLLocationDegrees(latitude)
+                let long = CLLocationDegrees(longitude)
+                
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let firstName = student.firstName!
+                let lastName  = student.lastName!
+                let mediaURL  = student.mediaURL!
+                
+                let annotation = MKPointAnnotation()
+                annotation.title = "\(firstName) \(lastName)"
+                annotation.coordinate = coordinate
+                annotation.subtitle = mediaURL
+                
+                annotations.append(annotation)
+            }
         }
         
         dispatch_async(dispatch_get_main_queue()) {

@@ -33,10 +33,10 @@
          contextName = "LoginViewController.(login() -&gt; ()).(closure #1):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "parseResponseOK">
+               value = "error == nil">
             </PersistentString>
             <PersistentString
-               value = "error == nil">
+               value = "emailTextField">
             </PersistentString>
             <PersistentString
                value = "accountInfo![&quot;id&quot;] ">
@@ -54,13 +54,13 @@
                value = "loginButton">
             </PersistentString>
             <PersistentString
-               value = "controller">
+               value = "sessionCreated">
+            </PersistentString>
+            <PersistentString
+               value = "parseResponseOK">
             </PersistentString>
             <PersistentString
                value = "passwordTextField">
-            </PersistentString>
-            <PersistentString
-               value = "sessionCreated">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -375,6 +375,17 @@
             </PersistentString>
             <PersistentString
                value = "error.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Manager.updateMapAndTable() -&gt; ():Manager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CLLocationDegrees(student.latitude!)">
+            </PersistentString>
+            <PersistentString
+               value = "dataStore.students ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -66,17 +66,17 @@ class MapViewController: UIViewController, MKMapViewDelegate
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        guard !manager.userData.loggedIn else { return }
-        
-        let storyboard      = UIStoryboard(name: "Main", bundle: nil)
-        let loginController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        appDelegate.window!.rootViewController!.presentViewController(loginController, animated: false, completion: nil)
-    }
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        guard !manager.userData.loggedIn else { return }
+//        
+//        let storyboard      = UIStoryboard(name: "Main", bundle: nil)
+//        let loginController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+//        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        appDelegate.window!.rootViewController!.presentViewController(loginController, animated: false, completion: nil)
+//    }
 }
 
